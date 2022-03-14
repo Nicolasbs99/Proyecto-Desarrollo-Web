@@ -31,9 +31,9 @@ public class Monstruo {
 
     };
 
-    public Monstruo(Long id, String nombre, int atack, int defence, int tamano, String desc,
+    public Monstruo( String nombre, int atack, int defence, int tamano, String desc,
             int vida, String wiki, String cat) {
-        Id = id;
+        
         this.nombre = nombre;
         this.atack = atack;
         this.defence = defence;
