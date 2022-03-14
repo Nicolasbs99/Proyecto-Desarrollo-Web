@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>OSRS</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="\FRONTEND\imgs\logo.jpg" class="logo"></a>
+            <ul>
+                <li><a href="\FRONTEND\CRUDadminAgrega.html">Agregar un jugador</a></li>
+                <li><a href="\FRONTEND\CRUDadminElimina.html">Eliminar Jugador</a></li>
+                <li><a href="\FRONTEND\CRUDadminModifica.html">Modificar Jugador</a></li>
+                <li><a href="\FRONTEND\Index.html">Salir</a></li>
+            </ul>
+        </header>
+
+        <h2>Ahora puedes <span>Modificar</span> un jugador</h2>
+
+        <div class="contenedor">            
+            <div class="img-box"> 
+                <form action="/my-handling-form-page" method="post">
+                <h3>Este es el ID que quieres modificar</h3>
+                <ul>
+                    <li>
+                        <label for="name">ID:</label>
+                        <input type="text" id="name" name="user_name">
+                    </li>
+
+                    <h3>Ingresa las modificaciones</h3>
+                    <li>
+                        <label for="mail">Nombre</label>
+                        <input type="text" id="mail" name="user_mail">
+                    </li>
+                    <li>
+                        <label for="msg">Nivel de ataque</label>
+                        <textarea id="number" name="user_message"></textarea>
+                    </li>
+                    <li>
+                        <label for="name">Nivel de defensa</label>
+                        <input type="text" id="name" name="user_name">
+                    </li>
+                    <li>
+                        <label for="mail">Tamaño</label>
+                        <input type="text" id="mail" name="user_mail">
+                    </li>
+                    <li>
+                        <label for="name">Vida</label>
+                        <input type="text" id="name" name="user_name">
+                    </li>
+                    <li>
+                        <label for="mail">Descripción</label>
+                        <input type="text" id="mail" name="user_mail">
+                    </li>
+                    <li>
+                        <label for="name">Categoría</label>
+                        <input type="text" id="name" name="user_name">
+                    </li>
+                </ul>
+
+                <a href="#">Confirmar modificaciones</a>
+
+
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>
