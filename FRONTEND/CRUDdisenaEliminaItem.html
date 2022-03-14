@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Elimina Usuario</title>
+    <title>Eliminar Item</title>
 </head>
 
 <body>
@@ -14,37 +14,34 @@
         <header>
             <a href="#"><img src="\FRONTEND\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\CRUDadminAgrega.html">Agregar un jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminElimina.html">Eliminar Jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminModifica.html">Modificar Jugador</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaAgregaItem.html">Agregar un Item</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaEliminaItem.html">Eliminar Item</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaModificaItem.html">Modificar Item</a></li>
                 <li><a href="\FRONTEND\Index.html">Salir</a></li>
             </ul>
         </header>
 
-        <h2>Ahora puedes <span>eliminar</span> un jugador</h2>
-        
+        <h2>Ahora puedes <span>eliminar</span> un Item</h2>
+
         <div class="contenedor">            
             <div class="img-box"> 
                 <form class="formulario" action="/my-handling-form-page" method="post">
                 <ul>
                     <li>
-                        <label for="name">ID:</label>
-                        <input type="text" id="name" name="user_name">
+                        <label for="ID">ID:</label>
+                        <input type="text" id="ID" name="item:_id">
                     </li>
                     <li>
-                        <label for="mail">Nombre</label>
-                        <input type="text" id="mail" name="user_mail">
-                    </li>                   
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" id="Nombre" name="item_name">
+                    </li>
                 </ul>
 
-                <a href="#">Eliminar jugador</a>
-
+                <a href="#">Eliminar Item</a>
             </div>
         </div>
-
 
     </section>
 
 </body>
-
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Modificar Item</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="\FRONTEND\imgs\logo.jpg" class="logo"></a>
+            <ul>
+                <li><a href="\FRONTEND\CRUDdisenaAgregaItem.html">Agregar un Item</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaEliminaItem.html">Eliminar Item</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaModificaItem.html">Modificar Item</a></li>
+                <li><a href="\FRONTEND\Index.html">Salir</a></li>
+            </ul>
+        </header>
+
+        <h2>Ahora puedes <span>modificar</span> un Item</h2>
+
+        <div class="contenedor">            
+            <div class="img-box"> 
+                <form class="formulario" action="/my-handling-form-page" method="post">
+                <ul>
+                    <h3>Este es el ID sel item a modificar</h3>
+                    <li>
+                        <label for="ID">ID:</label>
+                        <input type="text" id="ID" name="item:_id">
+                    </li>
+                    <h3>Estas son las modificaiones que quieres hacer</h3>
+                    <li>
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" id="Nombre" name="item_name">
+                    </li>
+                    <li>
+                        <label for="Costo">Costo</label>
+                        <input type= text id="Costo" name="item_cost"></input>
+                    </li>
+                    <li>
+                        <label for="Peso">Peso</label>
+                        <input type="text" id="Peso" name="item_weight">
+                    </li>
+                    <li>
+                        <label for="Descripcion">Descripción</label>
+                        <input type="text" id="Descripcion" name="item_descripction">
+                    </li>
+                </ul>
+
+                <a href="#">Modificar Item</a>
+
+
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>

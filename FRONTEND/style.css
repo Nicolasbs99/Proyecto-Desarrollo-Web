@@ -127,4 +127,8 @@ h2 span {
     max-width: 900px;
 }
 
+.contenedor .img-box .formulario li{
+    list-style: none;
+}
+
 
