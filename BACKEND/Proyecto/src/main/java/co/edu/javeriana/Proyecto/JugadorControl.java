@@ -8,11 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> fc8f5d79552a3f3b9869c2057a440c7cdc816aa5
 import co.edu.javeriana.Proyecto.Model.JugadorRepo;
 
 @Controller
