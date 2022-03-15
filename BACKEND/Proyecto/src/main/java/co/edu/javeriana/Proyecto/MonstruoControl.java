@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
+import co.edu.javeriana.Proyecto.Model.Monstruo;
 
 
 @Controller
@@ -25,16 +26,26 @@ public class MonstruoControl {
 
     @GetMapping("/crearMonstruo") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("newItem", new Monstruo());
         return "CRUDdisenaAgregaMonstruo";
     }
 
     @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Item item, Model model){
+    public String guardarJugador(@ModelAttribute Monstruo item, Model model){
         repositorio.save(item);
         return "redirect:/disenador";
     }
 
-
+    @GetMapping("/eliminarMonstruo") 
+    public String eliminarItem(Model model){
+        model.addAttribute("newItem", new Monstruo());
+        return "CRUDdisenaAgregaItem";
+    }
+    
+    @GetMapping("/modificarMonstruo") 
+    public String modificarItem(Model model){
+        model.addAttribute("newItem", new Monstruo());
+        return "CRUDdisenaAgregaItem";
+    }
     
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.edu.javeriana.Proyecto.Model.Decoracion;
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 
@@ -25,16 +26,26 @@ public class DecoControl {
 
     @GetMapping("/crearDecoracion") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("newItem", new Decoracion());
         return "CRUDdisenaAgregaDecor";
     }
 
     @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Item item, Model model){
+    public String guardarJugador(@ModelAttribute Decoracion item, Model model){
         repositorio.save(item);
         return "redirect:/disenador";
     }
-
+    @GetMapping("/eliminarDecoracion") 
+    public String eliminarItem(Model model){
+        model.addAttribute("newItem", new Decoracion());
+        return "CRUDdisenaAgregaItem";
+    }
+    
+    @GetMapping("/modificarDecoracion") 
+    public String modificarItem(Model model){
+        model.addAttribute("newItem", new Decoracion());
+        return "CRUDdisenaAgregaItem";
+    }
 
     
 }

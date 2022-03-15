@@ -14,9 +14,9 @@
         <header>
             <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\Jugador.html">Soy Jugador</a></li>
-                <li><a href="\FRONTEND\Disenador.html">Soy Diseñador</a></li>
-                <li><a href="\FRONTEND\Disenador.html">Atrás</a></li>
+                <li><a th:href="@{/jugador/comingsoon}">Soy Jugador</a></li>
+                <li><a th:href="@{/disenador}">Soy Diseñador</a></li>
+                <li><a th:href="@{/disenador}">Atrás</a></li>
             </ul>
         </header>
 
@@ -25,10 +25,10 @@
         <div class="contenedor">            
             <div class="img-box"> 
 
-                <a href="\FRONTEND\CRUDdisenaAgregaHabitat.html">CRUD HABITACIONES</a>
-                <a href="\FRONTEND\CRUDdisenaAgregaItem.html">CRUD ITEMS</a>
-                <a href="\FRONTEND\CRUDdisenaAgregaMonstruo.html">CRUD MONSTRUOS</a>
-                <a href="\FRONTEND\CRUDdisenaAgregaDecor.html">CRUD DECORACIONES</a>               
+                <a th:href="@{/habitacion/crearHabitacion}">CRUD HABITACIONES</a>
+                <a th:href="@{/item/crearItem}">CRUD ITEMS</a>
+                <a th:href="@{/monstruo/crearMonstruo}">CRUD MONSTRUOS</a>
+                <a th:href="@{/decoracion/crearDecoracion}">CRUD DECORACIONES</a>               
 
             </div>
         </div>
