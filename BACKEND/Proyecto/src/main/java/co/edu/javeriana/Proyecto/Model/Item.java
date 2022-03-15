@@ -14,6 +14,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
+    
     String Nombre;
     Date Actualizacion;
     int costo;

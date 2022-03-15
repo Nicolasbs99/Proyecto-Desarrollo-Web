@@ -23,36 +23,39 @@
 
         <h2>Ahora puedes <span>agregar</span> un Item</h2>
 
-        <div class="contenedor">            
-            <div class="img-box"> 
-                <form class="formulario" action="/my-handling-form-page" method="post">
-                <ul>
-                    <li>
-                        <label for="ID">ID:</label>
-                        <input type="text" id="ID" name="item_id">
-                    </li>
-                    <li>
-                        <label for="Nombre">Nombre</label>
-                        <input type="text" id="Nombre" name="item_name">
-                    </li>
-                    <li>
-                        <label for="Costo">Costo</label>
-                        <input type= text id="Costo" name="item_cost"></input>
-                    </li>
-                    <li>
-                        <label for="Peso">Peso</label>
-                        <input type="text" id="Peso" name="item_weight">
-                    </li>
-                    <li>
-                        <label for="Descripcion">Descripción</label>
-                        <input type="text" id="Descripcion" name="item_descripction">
-                    </li>
-                </ul>
+        <div class="contenedor">
+            <form action="#" th:action="@{/item/guardar}" th:object="${newItem}" method="post">
 
-                <a href="#">Agregar Item</a>
+                <div class="edit-field">
+                    <label for="selected-name">Nombre:</label>
+                    <input type="text" name="name" th:field="${newItem.Nombre}">
+                </div>
 
+                <div class="edit-field">
+                    <label for="selected-lastUpdated">Actulizacion:</label>
+                    <input type="text" name="last_updated" th:field="${newItem.Actualizacion}">
+                </div>
 
-            </div>
+                <div class="edit-field">
+                    <label for="selected-cost">Costo:</label>
+                    <input type="text" name="cost" th:field="${newItem.costo}">
+                </div>
+
+                <div class="edit-field">
+                    <label for="selected-weight">Peso:</label>
+                    <input type="text" name="weight" th:field="${newItem.pesot}">
+                </div>
+
+                <div class="edit-field">
+                    <label for="selected-weight">Descripción:</label>
+                    <input type="text" name="weight" th:field="${newItem.Descri}">
+                </div>
+
+                <div class="edit-field">
+                    <button type="submit"> Guardar </button>
+                </div>
+
+            </form>
         </div>
 
 

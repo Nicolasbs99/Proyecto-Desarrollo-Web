@@ -48,7 +48,7 @@ public class JugadorControl {
     @GetMapping("/crear") 
     public String crearJugadorer(Model model){
         model.addAttribute("newItem", new Jugador());
-        
+
         return "CRUDadminAgrega";
     }
 
