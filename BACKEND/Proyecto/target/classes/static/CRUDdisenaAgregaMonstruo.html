@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CRUD Monstruos</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="\FRONTEND\imgs\logo.jpg" class="logo"></a>
+            <ul>
+                <li><a href="\FRONTEND\CRUDdisenaAgregaMonstruo.html">Agregar un Monstruo</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaEliminaMonstruo.html">Eliminar un Monstruo</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaModificaMonstruo.html">Modificar Monstruo</a></li>
+                <li><a href="\FRONTEND\CRUDdisena.html">Atrás</a></li>
+            </ul>
+        </header>
+
+        <h2>Ahora puedes <span>agregar</span> un monstruo</h2>
+
+        <div class="contenedor">            
+            <div class="img-box"> 
+                <form class="formulario" action="/my-handling-form-page" method="post">
+                <ul>
+                    <li>
+                        <label for="name">ID:</label>
+                        <input type="text" id="id" name="monster_id">
+                    </li>
+                    <li>
+                        <label for="mail">Nombre</label>
+                        <input type="text" id="nombre" name="monster_name">
+                    </li>
+                    <li>
+                        <label for="msg">Nivel de ataque</label>
+                        <input type="text" id="ataque" name="monster_atacklevel">
+                    </li>
+                    <li>
+                        <label for="name">Nivel de defensa</label>
+                        <input type="text" id="defensa" name="monster_defense">
+                    </li>
+                    <li>
+                        <label for="mail">Tamaño</label>
+                        <input type="text" id="tamanio" name="monster_size">
+                    </li>
+                    <li>
+                        <label for="name">Vida</label>
+                        <input type="text" id="vida" name="monster_hitpoints">
+                    </li>
+                    <li>
+                        <label for="mail">Descripción</label>
+                        <input type="text" id="descripcion" name="monster_description">
+                    </li>
+                    <li>
+                        <label for="name">Categoría</label>
+                        <input type="text" id="categoria" name="monster_category">
+                    </li>
+                </ul>
+
+                <a href="#">Agregar monstruo</a>
+
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>

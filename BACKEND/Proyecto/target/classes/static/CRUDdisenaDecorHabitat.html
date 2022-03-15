@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Agregar Decoración</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="\FRONTEND\imgs\logo.jpg" class="logo"></a>
+            <ul>
+                <li><a href="\FRONTEND\CRUDdisenaAgregaHabitat.html">Agregar o Eliminar una Habitación</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaSalidasHabitat.html">Salidas de una Habitación</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaMonstruosHabitat.html">Monstruos Habitación</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaItemHabitat.html">Items habitacion</a></li>
+                <li><a href="\FRONTEND\CRUDdisenaDecorHabitat.html">Decoración Habitación</a></li>
+                <li><a href="\FRONTEND\CRUDdisena.html">Atrás</a></li>
+            </ul>
+        </header>
+
+        <h2>Ahora puedes <span>agregar o eliminar</span> decoración</h2>
+
+        <div class="contenedor">            
+            <div class="img-box"> 
+                <form class="formulario" action="/my-handling-form-page" method="post">
+                    <ul>
+                        <h3>A qué habitación va dirigido el cambio</h3>
+                        <li>
+                            <label for="ID">ID:</label>
+                            <input type="text" id="ID" name="habitat_id">
+                        </li>
+                        <h3>¿Qué se agrega o elimina?</h3>
+                        <li>
+                            <label for="ID">ID:</label>
+                            <input type="text" id="ID" name="decor_id">
+                        </li>
+                        <li>
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" id="Nombre" name="decor_name">
+                        </li>
+                    </ul>
+
+                <a href="#">Agregar decoración</a>
+                <a href="#">Eliminar decoración</a>
+
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>
