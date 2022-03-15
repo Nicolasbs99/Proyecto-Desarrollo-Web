@@ -19,23 +19,26 @@ public class JugadorControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    JugadorRepo jugadores;
+    JugadorRepo jugadorRepo;
 
     @PostMapping("/guardar")
     public String guardarJugador(){
-        return "redirect:/jugador/crear";
+        return "redirect:/";
     }
 
     @GetMapping("crear")
-    public String inicio(){
+    public String inicio(){ 
         return "CRUDadminAgrega";
     }   
-    
-    @GetMapping("/lista")
+    @GetMapping("comingsoon")
+    public String iniciod(){ 
+        return "Jugador";
+    }   
+    @GetMapping("/list")
     String findJugador(Model model){
-        model.addAttribute("jugador",jugadores.findAll()); 
-            
-        return "jugador-list";
+        model.addAttribute("jugadores",jugadorRepo.findAll()); 
+             
+        return "CRUDadminVerJuga";  
     }
     
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>Agrega Usuario</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
+            <ul>
+                <li><a href="\FRONTEND\CRUDadminAgrega.html">Agregar un jugador</a></li>
+                <li><a href="\FRONTEND\CRUDadminElimina.html">Eliminar Jugador</a></li>
+                <li><a href="\FRONTEND\CRUDadminModifica.html">Modificar Jugador</a></li>
+                <li><a href="\FRONTEND\Index.html">Salir</a></li>
+            </ul>
+        </header>
+
+
+        <div class="contenedor">            
+            <div class="img-box"> 
+                <h1>Jugadores</h1>
+
+                <ul>
+                    <il th:each="c : ${jugadores}" th:if="${c.nombre}"> 
+                        <a th:text="${c.nombre}"></a>
+                    </il>
+                </ul>
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>
