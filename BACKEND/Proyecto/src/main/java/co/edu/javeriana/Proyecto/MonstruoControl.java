@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 import co.edu.javeriana.Proyecto.Model.Monstruo;
+<<<<<<< HEAD
+=======
+import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
+>>>>>>> origin/main
 
 
 @Controller
@@ -22,7 +26,7 @@ public class MonstruoControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ItemRepo repositorio;
+    MonstruoRepo repositorio;
 
     @GetMapping("/crearMonstruo") 
     public String crearItem(Model model){

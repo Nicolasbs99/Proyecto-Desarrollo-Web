@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.edu.javeriana.Proyecto.Model.Decoracion;
+<<<<<<< HEAD
+=======
+import co.edu.javeriana.Proyecto.Model.DecoracionRepo;
+>>>>>>> origin/main
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 
@@ -22,7 +26,7 @@ public class DecoControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ItemRepo repositorio;
+    DecoracionRepo repositorio;
 
     @GetMapping("/crearDecoracion") 
     public String crearItem(Model model){
