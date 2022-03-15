@@ -17,15 +17,15 @@ public class Jugador {
     Long Id;
 
 
-    private String nombre;
-    private Date actualizacion;
-    private int atack;
-    private int defence;
-    private int tamano;
-    private String desc;
-    private int vida;
-    private String wiki;
-    private String cat;
+    String nombre;
+     Date actualizacion;
+     int atack;
+     int defence;
+     int tamano;
+     String desc;
+     int vida;
+     String wiki;
+     String cat;
     
     @OneToOne
     Habitacion habitacion;

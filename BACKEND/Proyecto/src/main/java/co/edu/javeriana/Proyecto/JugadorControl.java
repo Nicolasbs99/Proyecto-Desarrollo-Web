@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.edu.javeriana.Proyecto.Model.Jugador;
@@ -20,25 +21,20 @@ public class JugadorControl {
     @Autowired
     JugadorRepo jugadores;
 
-    @GetMapping("/lista")
-    String findAll(){
-        Iterable<Jugador> jugador = jugadores.findAll();
-        for (Jugador jugador2 : jugador) {
-           log.info("{}",jugador2.getNombre()); 
-        }
-        
-        
-        return "jugador-list";
+    @PostMapping("/guardar")
+    public String guardarJugador(){
+        return "redirect:/jugador/crear";
     }
 
-    @GetMapping("/{id}")
-    String findJugador(@PathVariable Long id, Model model){
-        Jugador jugador = jugadores.findById(id).orElseThrow();
-        model.addAttribute("Jugador",jugador);
-        log.info("{}",jugador.getNombre()); 
-        
-        
-        
+    @GetMapping("crear")
+    public String inicio(){
+        return "CRUDadminAgrega";
+    }   
+    
+    @GetMapping("/lista")
+    String findJugador(Model model){
+        model.addAttribute("jugador",jugadores.findAll()); 
+            
         return "jugador-list";
     }
     

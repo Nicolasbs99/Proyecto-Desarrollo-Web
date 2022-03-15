@@ -13,4 +13,5 @@ public interface JugadorRepo extends CrudRepository <Jugador, Long> {
     
     List<Jugador> findAll();
 
+    
 }
