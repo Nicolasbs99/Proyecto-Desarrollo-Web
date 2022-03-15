@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.edu.javeriana.Proyecto.Model.Decoracion;
+import co.edu.javeriana.Proyecto.Model.DecoracionRepo;
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 
@@ -21,7 +23,7 @@ public class DecoControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ItemRepo repositorio;
+    DecoracionRepo repositorio;
 
     @GetMapping("/crearDecoracion") 
     public String crearItem(Model model){
@@ -30,7 +32,7 @@ public class DecoControl {
     }
 
     @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Item item, Model model){
+    public String guardarJugador(@ModelAttribute Decoracion item, Model model){
         repositorio.save(item);
         return "redirect:/disenador";
     }

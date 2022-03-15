@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.edu.javeriana.Proyecto.Model.HabRepo;
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 
@@ -21,7 +22,7 @@ public class HabitatControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ItemRepo repositorio;
+    HabRepo repositorio;
 
     @GetMapping("/crearHabitacion") 
     public String crearItem(Model model){

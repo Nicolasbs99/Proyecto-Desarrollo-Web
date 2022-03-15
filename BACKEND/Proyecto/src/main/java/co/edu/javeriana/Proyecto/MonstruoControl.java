@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
+import co.edu.javeriana.Proyecto.Model.Monstruo;
+import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
 
 
 @Controller
@@ -21,7 +23,7 @@ public class MonstruoControl {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ItemRepo repositorio;
+    MonstruoRepo repositorio;
 
     @GetMapping("/crearMonstruo") 
     public String crearItem(Model model){
@@ -30,7 +32,7 @@ public class MonstruoControl {
     }
 
     @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Item item, Model model){
+    public String guardarJugador(@ModelAttribute Monstruo item, Model model){
         repositorio.save(item);
         return "redirect:/disenador";
     }
