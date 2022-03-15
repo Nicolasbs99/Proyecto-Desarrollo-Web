@@ -14,54 +14,54 @@
         <header>
             <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\CRUDadminAgrega.html">Agregar un jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminElimina.html">Eliminar Jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminModifica.html">Modificar Jugador</a></li>
-                <li><a href="\FRONTEND\Index.html">Salir</a></li>
+                <li><a th:href="@{/jugador/crear}">Agregar un jugador</a></li>
+                <li><a th:href="@{/jugador/eliminar}">Eliminar Jugador</a></li>
+                <li><a th:href="@{/jugador/mod}">Modificar Jugador</a></li>
+                <li><a th:href="@{/}">Salir</a></li>
             </ul>
         </header>
 
         <h2>Ahora puedes <span>agregar</span> un jugador</h2>
 
-        <div class="contenedor">            
-            <div class="img-box"> 
-                <form th:href="@{/jugador/guardar}" th: class="formulario" action="/my-handling-form-page" method="post">
-                <ul>
-                    <li>
-                        <label for="name">ID:</label>
-                        <input type="text" id="id" name="user_id">
-                    </li>
-                    <li>
-                        <label for="mail">Nombre</label>
-                        <input type="text" id="nombre" name="user_name">
-                    </li>
-                    <li>
-                        <label for="msg">Nivel de ataque</label>
-                        <input type="text" id="ataque" name="user_atacklevel">
-                    </li>
-                    <li>
-                        <label for="name">Nivel de defensa</label>
-                        <input type="text" id="defensa" name="user_defense">
-                    </li>
-                    <li>
-                        <label for="mail">Tamaño</label>
-                        <input type="text" id="tamanio" name="user_size">
-                    </li>
-                    <li>
-                        <label for="name">Vida</label>
-                        <input type="text" id="vida" name="user_hitpoints">
-                    </li>
-                    <li>
-                        <label for="mail">Descripción</label>
-                        <input type="text" id="descripcion" name="user_description">
-                    </li>
-                    <li>
-                        <label for="name">Categoría</label>
-                        <input type="text" id="categoria" name="user_category">
-                    </li>
-                </ul>
+        <div class="contenedor">
+            <div class="img-box">
+                <form th:href="@{/jugador/guardar}" class="formulario" action="/">
+                    <ul>
+                        <li>
+                            <label for="name">ID:</label>
+                            <input type="text" id="id" name="user_id">
+                        </li>
+                        <li>
+                            <label for="mail">Nombre</label>
+                            <input type="text" id="nombre" name="user_name">
+                        </li>
+                        <li>
+                            <label for="msg">Nivel de ataque</label>
+                            <input type="text" id="ataque" name="user_atacklevel">
+                        </li>
+                        <li>
+                            <label for="name">Nivel de defensa</label>
+                            <input type="text" id="defensa" name="user_defense">
+                        </li>
+                        <li>
+                            <label for="mail">Tamaño</label>
+                            <input type="text" id="tamanio" name="user_size">
+                        </li>
+                        <li>
+                            <label for="name">Vida</label>
+                            <input type="text" id="vida" name="user_hitpoints">
+                        </li>
+                        <li>
+                            <label for="mail">Descripción</label>
+                            <input type="text" id="descripcion" name="user_description">
+                        </li>
+                        <li>
+                            <label for="name">Categoría</label>
+                            <input type="text" id="categoria" name="user_category">
+                        </li>
+                    </ul>
 
-                <button type="submit">Agregar Jugador</a>
+                    <button type="submit">Agregar Jugador</a>
 
 
             </div>
