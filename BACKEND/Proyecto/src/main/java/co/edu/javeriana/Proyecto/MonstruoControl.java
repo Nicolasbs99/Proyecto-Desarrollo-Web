@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.edu.javeriana.Proyecto.Model.Item;
-import co.edu.javeriana.Proyecto.Model.ItemRepo;
+
 import co.edu.javeriana.Proyecto.Model.Monstruo;
-<<<<<<< HEAD
-=======
+
 import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
->>>>>>> origin/main
+
 
 
 @Controller
