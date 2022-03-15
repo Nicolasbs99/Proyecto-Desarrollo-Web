@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.edu.javeriana.Proyecto.Model.Jugador;
+
 import co.edu.javeriana.Proyecto.Model.JugadorRepo;
 
 @Controller
@@ -51,5 +53,14 @@ public class JugadorControl {
              
         return "CRUDadminVerJuga";  
     }
+
+    @PostMapping("/crearJugador")
+    public String crearJugador(Model model, Jugador jugador){
+        jugadorRepo.save(jugador);
+        model.addAttribute("jugadores", new Jugador());
+        return "CRUDadminAgrega";
+    }
+
+
     
 }

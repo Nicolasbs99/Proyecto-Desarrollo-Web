@@ -25,7 +25,11 @@
 
         <div class="contenedor">
             <div class="img-box">
+
+                <form th:object="${Jugador}" method="post" action="@{/crearJugador}">
+
                 <form th:href="@{/jugador/guardar}" class="formulario" action="/">
+
                     <ul>
                         <li>
                             <label for="name">ID:</label>
@@ -33,11 +37,19 @@
                         </li>
                         <li>
                             <label for="mail">Nombre</label>
+
+                            <input type="text" placeholder="nombre" th:field="${Jugador.nombre}">
+                        </li>
+                        <li>
+                            <label for="msg">Nivel de ataque</label>
+                            <input type="text" placeholder="atack" th:field="${Jugador.atack}">
+
                             <input type="text" id="nombre" name="user_name">
                         </li>
                         <li>
                             <label for="msg">Nivel de ataque</label>
                             <input type="text" id="ataque" name="user_atacklevel">
+
                         </li>
                         <li>
                             <label for="name">Nivel de defensa</label>
@@ -60,9 +72,9 @@
                             <input type="text" id="categoria" name="user_category">
                         </li>
                     </ul>
+                </form>
 
-                    <button type="submit">Agregar Jugador</a>
-
+                <button type="submit" th:value="Crear Jugador">Agregar Jugador</a>
 
             </div>
         </div>
