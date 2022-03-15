@@ -23,61 +23,65 @@
 
         <h2>Ahora puedes <span>agregar</span> un jugador</h2>
 
-        <div class="contenedor">
-            <div class="img-box">
-
-                <form th:object="${Jugador}" method="post" action="@{/crearJugador}">
-
-            
-
-                    <ul>
-                        <li>
-                            <label for="name">ID:</label>
-                            <input type="text" id="id" name="user_id">
-                        </li>
-                        <li>
-                            <label for="mail">Nombre</label>
-
-                            <input type="text" placeholder="nombre" th:field="${Jugador.nombre}">
-                        </li>
-                        <li>
-                            <label for="msg">Nivel de ataque</label>
-                            <input type="text" placeholder="atack" th:field="${Jugador.atack}">
-
-                            <input type="text" id="nombre" name="user_name">
-                        </li>
-                        <li>
-                            <label for="msg">Nivel de ataque</label>
-                            <input type="text" id="ataque" name="user_atacklevel">
-
-                        </li>
-                        <li>
-                            <label for="name">Nivel de defensa</label>
-                            <input type="text" id="defensa" name="user_defense">
-                        </li>
-                        <li>
-                            <label for="mail">Tamaño</label>
-                            <input type="text" id="tamanio" name="user_size">
-                        </li>
-                        <li>
-                            <label for="name">Vida</label>
-                            <input type="text" id="vida" name="user_hitpoints">
-                        </li>
-                        <li>
-                            <label for="mail">Descripción</label>
-                            <input type="text" id="descripcion" name="user_description">
-                        </li>
-                        <li>
-                            <label for="name">Categoría</label>
-                            <input type="text" id="categoria" name="user_category">
-                        </li>
-                    </ul>
-                </form>
-
-                <button type="submit" th:value="crear jugador">Agregar Jugador</a>
-
-            </div>
+        <div class="main-container">
+            <h1 th:text="'Create: '"></h1>
+    
+            <form action="#" th:action="@{/jugador/guardar}" th:object="${newItem}" method="post">
+                
+                <div class="edit-field">
+                    <label for="selected-name">Name:</label>
+                    <input type="text" name="name" th:field="${newItem.nombre}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-lastUpdated">Last Updated:</label>
+                    <input type="text"  name="last_updated" th:field="${newItem.actualizacion}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-cost">Ataque:</label>
+                    <input type="text" name="cost" th:field="${newItem.atack}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-weight">Defensa:</label>
+                    <input type="text" name="weight" th:field="${newItem.defence}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-examine">Tamaño:</label>
+                    <input type="text" name="examine" th:field="${newItem.tamano}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-wiki_url">Wiki Url:</label>
+                    <input type="text" name="wiki_url" th:field="${newItem.wiki}">
+                </div>
+                <div class="edit-field">
+                    <label for="selected-weight">Vida:</label>
+                    <input type="text" name="weight" th:field="${newItem.vida}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-examine">Descripcion:</label>
+                    <input type="text" name="examine" th:field="${newItem.desc}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-wiki_url">Categoria:</label>
+                    <input type="text" name="wiki_url" th:field="${newItem.cat}">
+                </div>
+                <div class="edit-field">
+                    <button type="submit"> Guardar </button>
+                </div>
+    
+    
+            </form>
+    
+    
+    
         </div>
+        
 
 
     </section>
