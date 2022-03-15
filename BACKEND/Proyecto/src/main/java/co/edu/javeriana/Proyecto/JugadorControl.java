@@ -45,7 +45,7 @@ public class JugadorControl {
     @GetMapping("/comingsoon")
     public String iniciod(){ 
         return "Jugador";
-    } 
+    }  
 
     @GetMapping("/list")
     String findJugador(Model model){
@@ -53,11 +53,11 @@ public class JugadorControl {
              
         return "CRUDadminVerJuga";  
     }
-
+  
     @PostMapping("/crearJugador")
     public String crearJugador(Model model, Jugador jugador){
         jugadorRepo.save(jugador);
-        model.addAttribute("jugadores", new Jugador());
+        model.addAttribute("jugador", new Jugador());
         return "CRUDadminAgrega";
     }
 
