@@ -30,7 +30,7 @@ public class Indexcont {
     public String inicios(){
         return "Disenador";
     }  
-    @GetMapping("disenador/disenar")
+    @GetMapping("disenar")
     public String inicioss(){
         return "CRUDdisena";
     }  
@@ -48,6 +48,26 @@ public class Indexcont {
     public String crearj(){ 
         
         return "CRUDadminAgrega";
-    }  
+    }
     
-}
+    @GetMapping("/disenar/CRUDHabitaciones")
+    public String crearhab(){ 
+        
+        return "CRUDdisenaAgregaHabitat";
+    }
+    @GetMapping("/disenar/CRUDItem")
+    public String creari(){ 
+        
+        return "CRUDdisenaAgregaItem";
+    }
+    @GetMapping("/disenar/CRUDMonstruo")
+    public String crearm(){ 
+        
+        return "CRUDdisenaAgregaMonstruo";
+    }
+    @GetMapping("/disenar/CRUDDeco")
+    public String creard(){ 
+        
+        return "CRUDdisenaAgregaDecor"; 
+    }
+} 

@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.edu.javeriana.Proyecto.Model.Item;
-import co.edu.javeriana.Proyecto.Model.ItemRepo;
+
 import co.edu.javeriana.Proyecto.Model.Monstruo;
+
 import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
+
 
 
 @Controller
@@ -27,7 +28,7 @@ public class MonstruoControl {
 
     @GetMapping("/crearMonstruo") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("newItem", new Monstruo());
         return "CRUDdisenaAgregaMonstruo";
     }
 
@@ -37,6 +38,16 @@ public class MonstruoControl {
         return "redirect:/disenador";
     }
 
-
+    @GetMapping("/eliminarMonstruo") 
+    public String eliminarItem(Model model){
+        model.addAttribute("newItem", new Monstruo());
+        return "CRUDdisenaEliminaMonstruo";
+    }
+    
+    @GetMapping("/modificarMonstruo") 
+    public String modificarItem(Model model){
+        model.addAttribute("newItem", new Monstruo());
+        return "CRUDdisenaModificaMonstruo";
+    }
     
 }

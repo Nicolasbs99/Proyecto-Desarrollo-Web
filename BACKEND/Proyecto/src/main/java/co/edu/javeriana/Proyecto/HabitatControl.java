@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import co.edu.javeriana.Proyecto.Model.Habitacion;
+
 import co.edu.javeriana.Proyecto.Model.HabRepo;
+<<<<<<< HEAD
 import co.edu.javeriana.Proyecto.Model.Habitacion;
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
+=======
+
+>>>>>>> 5efc2ab40ee3afe3aa7a9f20d9b2718517ac64c9
 
 
 @Controller
@@ -27,7 +34,7 @@ public class HabitatControl {
 
     @GetMapping("/crearHabitacion") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("newItem", new Habitacion());
         return "CRUDdisenaAgregaHabitat";
     }
 
@@ -37,6 +44,29 @@ public class HabitatControl {
         return "redirect:/disenador";
     }
 
-
-    
+    @GetMapping("/salidaHabitacion") 
+    public String eliminarItem(Model model){
+        model.addAttribute("newItem", new Habitacion());
+        return "CRUDdisenaSalidasHabitat";
+    }
+    @GetMapping("/monstruoHabitacion") 
+    public String modificarItem(Model model){
+        model.addAttribute("newItem", new Habitacion());
+        return "CRUDdisenaMonstruosHabitat";
+    }
+    @GetMapping("/modificarHabitacion") 
+    public String modificarItems(Model model){
+        model.addAttribute("newItem", new Habitacion());
+        return "CRUDdisenaAgregaItem";
+    }
+    @GetMapping("/ItemHabitacion") 
+    public String item(Model model){
+        model.addAttribute("newItem", new Habitacion());
+        return "CRUDdisenaItemHabitat";
+    }
+    @GetMapping("/DecoHabitacion") 
+    public String decoitem(Model model){
+        model.addAttribute("newItem", new Habitacion());
+        return "CRUDdisenaDecorHabitat";
+    }
 }

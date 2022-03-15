@@ -35,6 +35,16 @@ public class ItemControl {
         return "redirect:/disenador";
     }
 
-
+    @GetMapping("/eliminarItem") 
+    public String eliminarItem(Model model){
+        model.addAttribute("newItem", new Item());
+        return "CRUDdisenaEliminaItem";
+    }
+    
+    @GetMapping("/modificarItem") 
+    public String modificarItem(Model model){
+        model.addAttribute("newItem", new Item());
+        return "CRUDdisenaModificaItem";
+    }
     
 }

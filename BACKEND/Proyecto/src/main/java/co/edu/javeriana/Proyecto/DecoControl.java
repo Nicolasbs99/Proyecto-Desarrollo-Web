@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.edu.javeriana.Proyecto.Model.Decoracion;
+
 import co.edu.javeriana.Proyecto.Model.DecoracionRepo;
-import co.edu.javeriana.Proyecto.Model.Item;
-import co.edu.javeriana.Proyecto.Model.ItemRepo;
+
 
 
 @Controller
@@ -27,7 +27,7 @@ public class DecoControl {
 
     @GetMapping("/crearDecoracion") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("newItem", new Decoracion());
         return "CRUDdisenaAgregaDecor";
     }
 
@@ -36,7 +36,7 @@ public class DecoControl {
         repositorio.save(item);
         return "redirect:/disenador";
     }
-
+    
 
     
 }
