@@ -21,19 +21,32 @@ public class JugadorControl {
     @Autowired
     JugadorRepo jugadorRepo;
 
-    @PostMapping("/guardar")
-    public String guardarJugador(){
-        return "redirect:/";
+    @GetMapping("/guardar")
+    public String guardarJugador(Model model){
+        return "jugador/list";
     }
 
-    @GetMapping("crear")
-    public String inicio(){ 
+    @GetMapping("/crear")
+    public String crearj(){ 
+        
         return "CRUDadminAgrega";
-    }   
-    @GetMapping("comingsoon")
+    }  
+
+    @GetMapping("/eliminar") 
+    public String eliminarj(){  
+        return "CRUDadminElimina";
+    }  
+
+    @GetMapping("/mod")
+    public String modj(){ 
+        return "Jugador";
+    }  
+
+    @GetMapping("/comingsoon")
     public String iniciod(){ 
         return "Jugador";
-    }   
+    } 
+
     @GetMapping("/list")
     String findJugador(Model model){
         model.addAttribute("jugadores",jugadorRepo.findAll()); 

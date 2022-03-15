@@ -25,7 +25,7 @@
 
         <div class="contenedor">            
             <div class="img-box"> 
-                <form th:href="@{/jugador/guardar}" class="formulario" action="/my-handling-form-page" method="post">
+                <form th:href="@{/jugador/guardar}" th: class="formulario" action="/my-handling-form-page" method="post">
                 <ul>
                     <li>
                         <label for="name">ID:</label>
@@ -61,7 +61,7 @@
                     </li>
                 </ul>
 
-                <a href="#">Agregar Jugador</a>
+                <button type="submit">Agregar Jugador</a>
 
 
             </div>
