@@ -14,8 +14,8 @@
         <header>
             <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\Index.html">Inicio</a></li>
-                <li><a href="\FRONTEND\Admin.html">Soy Administrador</a></li>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/administrador}">Soy Administrador</a></li>
             </ul>
         </header>
 
@@ -25,7 +25,7 @@
                 <p>
                     Adelante Jefe. Agreguemos algunos aventureros!
                 </p>
-                <a href="\FRONTEND\CRUDadminAgrega.html">Crear, eliminar o modificar jugador</a>
+                <a th:href="@{/administrador/crear}">Crear, eliminar o modificar jugador</a>
             </div>
             <div class="img-box">
                 <img src="\imgs\foto1.png" width="600">

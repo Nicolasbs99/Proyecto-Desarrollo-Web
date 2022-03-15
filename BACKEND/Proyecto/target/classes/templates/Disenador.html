@@ -14,9 +14,9 @@
         <header>
             <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\Index.html">Inicio</a></li>
-                <li><a href="\FRONTEND\Jugador.html">Soy Jugador</a></li>
-                <li><a href="\FRONTEND\Disenador.html">Soy Diseñador</a></li>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/jugador/comingsoon}">Soy Jugador</a></li>
+                <li><a th:href="@{/administrador/list}">Soy Administrador</a></li>
             </ul>
         </header>
 
@@ -26,8 +26,8 @@
                 <p>
                     Recuerda que como diseñador puedes diseñar o jugar
                 </p>
-                <a href="\FRONTEND\Jugador.html">Jugar</a>
-                <a href="\FRONTEND\CRUDdisena.html">Diseñar</a>
+                <a th:href="@{/jugador/comingsoon}">Jugar</a>
+                <a th:href="@{/disenador/disenar}">Diseñar</a>
             </div>
 
             <div class="img-box">

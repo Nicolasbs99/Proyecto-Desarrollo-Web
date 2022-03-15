@@ -14,10 +14,10 @@
         <header>
             <a href="#"><img src="\imgs\logo.jpg" class="logo"></a>
             <ul>
-                <li><a href="\FRONTEND\CRUDadminAgrega.html">Agregar un jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminElimina.html">Eliminar Jugador</a></li>
-                <li><a href="\FRONTEND\CRUDadminModifica.html">Modificar Jugador</a></li>
-                <li><a href="\FRONTEND\Index.html">Salir</a></li>
+                <li><a th:href="@{/jugador/crear}">Agregar un jugador</a></li>
+                <li><a th:href="@{/jugador/eliminar}">Eliminar Jugador</a></li>
+                <li><a th:href="@{/jugador/mod}">Modificar Jugador</a></li>
+                <li><a th:href="@{/}">Salir</a></li>
             </ul>
         </header>
 
@@ -25,7 +25,11 @@
 
         <div class="contenedor">
             <div class="img-box">
+
                 <form th:object="${Jugador}" method="post" action="@{/crearJugador}">
+
+                <form th:href="@{/jugador/guardar}" class="formulario" action="/">
+
                     <ul>
                         <li>
                             <label for="name">ID:</label>
@@ -33,11 +37,19 @@
                         </li>
                         <li>
                             <label for="mail">Nombre</label>
+
                             <input type="text" placeholder="nombre" th:field="${Jugador.nombre}">
                         </li>
                         <li>
                             <label for="msg">Nivel de ataque</label>
                             <input type="text" placeholder="atack" th:field="${Jugador.atack}">
+
+                            <input type="text" id="nombre" name="user_name">
+                        </li>
+                        <li>
+                            <label for="msg">Nivel de ataque</label>
+                            <input type="text" id="ataque" name="user_atacklevel">
+
                         </li>
                         <li>
                             <label for="name">Nivel de defensa</label>
@@ -63,7 +75,6 @@
                 </form>
 
                 <button type="submit" th:value="Crear Jugador">Agregar Jugador</a>
-
 
             </div>
         </div>
