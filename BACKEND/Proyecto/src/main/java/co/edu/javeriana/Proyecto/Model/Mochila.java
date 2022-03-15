@@ -2,28 +2,40 @@ package co.edu.javeriana.Proyecto.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Mochila {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
     
     Float peso;
 
-    @OneToOne
-    Jugador jugador;
+    @OneToMany( mappedBy = "mochila")
+    List<Item> Objetos = new ArrayList<>();
 
     public Mochila() {
+    }
+
+    public List<Item> getObjetos() {
+        return Objetos;
+    }
+
+    public void setObjetos(List<Item> objetos) {
+        Objetos = objetos;
     }
 
     public Mochila(Float peso) {
         
         this.peso = peso;
     }
+
 
     public Long getId() {
         return Id;

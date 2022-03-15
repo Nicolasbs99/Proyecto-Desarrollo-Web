@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,7 +14,7 @@ import javax.persistence.OneToOne;
 public class Habitacion {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
 
     String nombre;
@@ -22,10 +23,18 @@ public class Habitacion {
     @OneToOne
     Calabozo Calabozo;
 
-    @OneToMany( mappedBy = "cal")
+    @OneToMany( mappedBy = "habitacion")
     List<Jugador> jugadores = new ArrayList<>();
 
-    
+    @OneToMany( mappedBy = "habi")
+    List<Item> obje = new ArrayList<>();
+
+    @OneToMany( mappedBy = "habit")
+    List<Decoracion> Deco = new ArrayList<>();
+
+    @OneToOne
+    Monstruo monstruo;
+
     public Habitacion() {
     }
 
@@ -34,6 +43,42 @@ public class Habitacion {
     public Habitacion(String nombre) {
         this.nombre = nombre;
         
+    }
+
+
+
+    public List<Decoracion> getDeco() {
+        return Deco;
+    }
+
+
+
+    public void setDeco(List<Decoracion> deco) {
+        Deco = deco;
+    }
+
+
+
+    public List<Item> getObje() {
+        return obje;
+    }
+
+
+
+    public void setObje(List<Item> obje) {
+        this.obje = obje;
+    }
+
+
+
+    public Monstruo getMonstruo() {
+        return monstruo;
+    }
+
+
+
+    public void setMonstruo(Monstruo monstruo) {
+        this.monstruo = monstruo;
     }
 
 
@@ -53,7 +98,7 @@ public class Habitacion {
     public void setJugadores(List<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
-
+    
     public Long getId() {
         return Id;
     }

@@ -4,14 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 
 @Entity
 public class Monstruo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
 
 
@@ -24,9 +26,7 @@ public class Monstruo {
     private int vida;
     private String wiki;
     private String cat;
-
-
-
+    
     public Monstruo(){
 
     };
@@ -43,6 +43,9 @@ public class Monstruo {
         this.wiki = wiki;
         this.cat = cat;
     }
+    
+
+
     public Long getId() {
         return Id;
     }
