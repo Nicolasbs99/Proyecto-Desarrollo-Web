@@ -39,13 +39,13 @@ public class MonstruoControl {
     @GetMapping("/eliminarMonstruo") 
     public String eliminarItem(Model model){
         model.addAttribute("newItem", new Monstruo());
-        return "CRUDdisenaAgregaItem";
+        return "CRUDdisenaEliminaMonstruo";
     }
     
     @GetMapping("/modificarMonstruo") 
     public String modificarItem(Model model){
         model.addAttribute("newItem", new Monstruo());
-        return "CRUDdisenaAgregaItem";
+        return "CRUDdisenaModificaMonstruo";
     }
     
 }

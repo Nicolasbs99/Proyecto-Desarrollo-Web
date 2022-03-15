@@ -35,17 +35,7 @@ public class DecoControl {
         repositorio.save(item);
         return "redirect:/disenador";
     }
-    @GetMapping("/eliminarDecoracion") 
-    public String eliminarItem(Model model){
-        model.addAttribute("newItem", new Decoracion());
-        return "CRUDdisenaAgregaItem";
-    }
     
-    @GetMapping("/modificarDecoracion") 
-    public String modificarItem(Model model){
-        model.addAttribute("newItem", new Decoracion());
-        return "CRUDdisenaAgregaItem";
-    }
 
     
 }

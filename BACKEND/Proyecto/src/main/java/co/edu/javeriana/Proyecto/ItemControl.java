@@ -38,13 +38,13 @@ public class ItemControl {
     @GetMapping("/eliminarItem") 
     public String eliminarItem(Model model){
         model.addAttribute("newItem", new Item());
-        return "CRUDdisenaAgregaItem";
+        return "CRUDdisenaEliminaItem";
     }
     
     @GetMapping("/modificarItem") 
     public String modificarItem(Model model){
         model.addAttribute("newItem", new Item());
-        return "CRUDdisenaAgregaItem";
+        return "CRUDdisenaModificaItem";
     }
     
 }
