@@ -2,14 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-ProyectoDwApplication<Proyecto>",
+            "name": "Launch ProyectoDwApplication",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
             "mainClass": "co.edu.javeriana.Proyecto.ProyectoDwApplication",
-            "projectName": "Proyecto",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "projectName": "Proyecto"
         }
     ]
 }

@@ -20,7 +20,7 @@ public class Indexcont {
 
     
     @GetMapping("")
-    public String inicio(){
+    public String inicio(){ 
         return "Index";
     }   
     
