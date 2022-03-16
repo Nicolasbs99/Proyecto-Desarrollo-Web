@@ -40,6 +40,12 @@ public class ItemControl {
         model.addAttribute("newItem", new Item());
         return "CRUDdisenaEliminaItem";
     }
+
+    @PostMapping("eliminado")
+    public String eliminandoItem(@ModelAttribute Item item, Model model){
+        repositorio.delete(item);
+        return "redirect:/disenador";
+    }
     
     @GetMapping("/modificarItem") 
     public String modificarItem(Model model){

@@ -25,28 +25,36 @@
 
         <h2>Ahora puedes <span>agregar o eliminar</span> una habitación</h2>
 
+        <h3>Elimina aqui</h3><br>
+        <form action="#" th:action="@{/habitacion/eliminar}" th:object="${newItem}" method="post">
+
+            <div class="">
+                <label for="selected-name">ID:</label>
+                <input type="text" name="name" th:field="${newItem.Id}">
+            </div>
+
+            <div class="">
+                <button type="submit"> Eliminar </button>
+            </div>
+        </form>
         <div class="contenedor">
             <div class="img-box">
 
+                <h3>Agrega aqui</h3><br>
                 <form action="#" th:action="@{/habitacion/guardar}" th:object="${newItem}" method="post">
 
-                    <div class="edit-field">
+                    <div class="">
                         <label for="selected-name">ID:</label>
                         <input type="text" name="name" th:field="${newItem.Id}">
                     </div>
-
-                    <div class="edit-field">
+                    <div class="">
                         <label for="selected-name">Nombre:</label>
                         <input type="text" name="name" th:field="${newItem.nombre}">
                     </div>
 
-                    <div class="edit-field">
+                    <div class="">
                         <button type="submit"> Guardar </button>
                     </div>
-                    <div class="edit-field">
-                        <button type="submit"> Eliminar </button>
-                    </div>
-
                 </form>
             </div>
         </div>

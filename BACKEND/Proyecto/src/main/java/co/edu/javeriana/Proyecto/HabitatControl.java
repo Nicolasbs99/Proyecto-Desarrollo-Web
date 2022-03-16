@@ -37,6 +37,12 @@ public class HabitatControl {
         return "redirect:/disenador";
     }
 
+    @PostMapping("eliminar")
+    public String eliminarJugador(@ModelAttribute Habitacion item, Model model){
+        repositorio.delete(item);
+        return "redirect:/disenador";
+    }
+
     @GetMapping("/salidaHabitacion") 
     public String eliminarItem(Model model){
         model.addAttribute("newItem", new Habitacion());
