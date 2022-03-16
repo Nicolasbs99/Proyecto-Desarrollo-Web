@@ -22,23 +22,32 @@
         </header>
 
         <h2>Ahora puedes <span>eliminar</span> un monstruo</h2>
+        <div class="contenedor-lista">
+            <div class="img-box">
+                <h1>Monstruos</h1>
 
-        <div class="contenedor">            
-            <div class="img-box"> 
-                <form class="formulario" action="/my-handling-form-page" method="post">
-                <ul>
-                    <li>
-                        <label for="name">ID:</label>
-                        <input type="text" id="id" name="monster_id">
-                    </li>
-                    <li>
-                        <label for="mail">Nombre</label>
-                        <input type="text" id="nombre" name="monster_name">
-                    </li>
+                <ul class="lista">
+                    <il th:each="c : ${monstruos}" th:if="${c.nombre}">
+                        <a th:text="${c.id}"></a><a th:text="${c.nombre}"></a>
+                    </il>
                 </ul>
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="img-box">
+                <form class="formulario" th:action="@{/monstruo/eliminado}" action="#" method="post">
+                    <ul>
+                        <li>
+                            <label for="name">ID:</label>
+                            <input type="text" id="id" name="monster_id" th:field="${newItem.Id}">
+                        </li>
+                    </ul>
 
-                <a href="#">Eliminar monstruo</a>
+                    <div>
+                        <button type="submit"> Eliminar Monstruo </button>
+                    </div>
 
+                </form>
             </div>
         </div>
 

@@ -41,13 +41,18 @@ public class MonstruoControl {
     @GetMapping("/eliminarMonstruo") 
     public String eliminarItem(Model model){
         model.addAttribute("newItem", new Monstruo());
+        model.addAttribute("monstruos",repositorio.findAll());
         return "CRUDdisenaEliminaMonstruo";
     }
-    
+    @PostMapping("eliminado")
+    public String eliminandoJugador(@ModelAttribute Monstruo item, Model model){
+        repositorio.delete(item);
+        return "redirect:/disenar";
+    }
     @GetMapping("/modificarMonstruo") 
     public String modificarItem(Model model){
         model.addAttribute("newItem", new Monstruo());
         return "CRUDdisenaModificaMonstruo";
-    }
-    
+    } 
+     
 }
