@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,12 +22,6 @@ public class JugadorControl {
 
     @Autowired
     JugadorRepo jugadorRepo;
-
-   
-    @GetMapping("eliminar") 
-    public String eliminarj(){  
-        return "CRUDadminElimina";
-    }  
 
     @GetMapping("mod")
     public String modj(){ 
@@ -48,7 +43,6 @@ public class JugadorControl {
     @GetMapping("/crear") 
     public String crearJugadorer(Model model){
         model.addAttribute("newItem", new Jugador());
-
         return "CRUDadminAgrega";
     }
 
@@ -57,6 +51,21 @@ public class JugadorControl {
         jugadorRepo.save(item);
         return "redirect:/jugador/list";
     }
+
+    @GetMapping("/eliminar")
+    public String deleteJugador(Model model, @ModelAttribute Jugador item){
+        model.addAttribute("newItem", new Jugador());
+        return "CRUDadminElimina";
+    }
+
+    @PostMapping("eliminado")
+    public String eliminandoJugador(@ModelAttribute Jugador item, Model model){
+        jugadorRepo.delete(item);
+        return "redirect:/jugador/list";
+    }
+
+
+
  
 
     

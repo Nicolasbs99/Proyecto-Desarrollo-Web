@@ -20,30 +20,23 @@
 
         <h2>Ahora puedes <span>manejar</span> la decoración</h2>
 
-        <div class="contenedor">            
-            <div class="img-box"> 
-                <form class="formulario" action="/my-handling-form-page" method="post">
-                <ul>
-                    <li>
-                        <label for="ID">ID:</label>
-                        <input type="text" id="ID" name="decor_id">
-                    </li>
-                    <li>
-                        <label for="Nombre">Nombre</label>
-                        <input type="text" id="Nombre" name="decor_name">
-                    </li>
-                </ul>
+        <div class="contenedor">
+            <div class="img-box">
 
-                <a href="#">Agregar decoración</a>
-                <a href="#">Eliminar decoración</a>
+                <form action="#" th:action="@{/decoracion/guardar}" th:object="${newItem}" method="post">
 
+                    <div class="edit-field">
+                        <label for="selected-name">Name:</label>
+                        <input type="text" name="name" th:field="${newItem.nombre}">
+                    </div>
 
+                    <div class="edit-field">
+                        <button type="submit"> Guardar </button>
+                    </div>
+
+                </form>
             </div>
         </div>
-
-
     </section>
-
 </body>
-
 </html>

@@ -14,13 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import co.edu.javeriana.Proyecto.Model.Habitacion;
 
 import co.edu.javeriana.Proyecto.Model.HabRepo;
-<<<<<<< HEAD
-import co.edu.javeriana.Proyecto.Model.Habitacion;
-import co.edu.javeriana.Proyecto.Model.Item;
-import co.edu.javeriana.Proyecto.Model.ItemRepo;
-=======
-
->>>>>>> 5efc2ab40ee3afe3aa7a9f20d9b2718517ac64c9
 
 
 @Controller
@@ -69,4 +62,6 @@ public class HabitatControl {
         model.addAttribute("newItem", new Habitacion());
         return "CRUDdisenaDecorHabitat";
     }
+
+    
 }
