@@ -34,9 +34,13 @@ public class DecoControl {
     @PostMapping("guardar")
     public String guardarJugador(@ModelAttribute Decoracion item, Model model){
         repositorio.save(item);
-        return "redirect:/disenador";
+        return "redirect:/disenar";
     }
-    
+    @PostMapping("eliminar")
+    public String eliminarJugador(@ModelAttribute Decoracion item, Model model){
+        repositorio.delete(item);
+        return "redirect:/disenar";
+    }
 
     
 }
