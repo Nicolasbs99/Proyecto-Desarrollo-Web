@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 public class Jugador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long Id;
 
 
