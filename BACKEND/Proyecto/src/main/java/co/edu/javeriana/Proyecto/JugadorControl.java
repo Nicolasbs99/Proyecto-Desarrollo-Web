@@ -1,6 +1,5 @@
 package co.edu.javeriana.Proyecto;
 
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.Jugador;
 
 import co.edu.javeriana.Proyecto.Model.JugadorRepo;
@@ -29,19 +26,18 @@ public class JugadorControl {
     @Autowired
     JugadorRepo jugadorRepo;
 
-<<<<<<< HEAD
+
     @Autowired
     MochilaRepo mochilas;
 
     @GetMapping("modificar")
     public String modj(Model model, @RequestParam Long id){ 
-        Item selected = jugadorRepo.findById(id).orElseThrow();
+        Jugador selected = jugadorRepo.findById(id).orElseThrow();
         model.addAttribute("selected", selected);
         return "CRUDadminModifica";
     }  
 
-=======
->>>>>>> origin/main
+
     @GetMapping("/comingsoon")
     public String iniciod(){ 
         return "Jugador";
@@ -59,7 +55,11 @@ public class JugadorControl {
         model.addAttribute("newItem", new Jugador());
         return "CRUDadminAgrega";
     }
-
+    @PostMapping("guardarm")
+    public String guardarJugadorm(@ModelAttribute Jugador item, Model model){
+        jugadorRepo.save(item); 
+        return "redirect:/jugador/list";
+    } 
     @PostMapping("guardar")
     public String guardarJugador(@ModelAttribute Jugador item, Model model){
         float numero = (float) (Math.random() * 100 + 1);
@@ -72,7 +72,7 @@ public class JugadorControl {
             jugadorRepo.save(item);
         }
         return "redirect:/jugador/list";
-    }
+    } 
 
     @GetMapping("/eliminar")
     public String deleteJugador(Model model, @ModelAttribute Jugador item){
@@ -90,17 +90,9 @@ public class JugadorControl {
         return "redirect:/jugador/list";
     }
 
-    @GetMapping("/mod")
-    public String modificarJugador(Model model, @ModelAttribute Jugador item){
-        model.addAttribute("newItem", new Jugador());
-        return "CRUDadminModifica";
-    }
+    
 
-    @PostMapping("modificado")
-    public String modificarJugador(@ModelAttribute Jugador item, Model model){
-        
-        return "redirect:/jugador/list";
-    }
+    
 
    
 

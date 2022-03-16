@@ -27,8 +27,8 @@
                 <h1>Jugadores</h1>
 
                 <ul>
-                    <il th:each="c : ${jugadores}" th:if="${c.nombre}"> 
-                        <a th:text="${c.nombre}"></a>
+                    <il th:each="c : ${jugadores}" th:if="${c.nombre}" > 
+                        <a th:text="${c.nombre}" th:href="@{/jugador/modificar(id = ${c.id})}"></a>
                     </il>
                 </ul>
             </div>
