@@ -25,12 +25,12 @@
 
                 <form action="#" th:action="@{/decoracion/guardar}" th:object="${newItem}" method="post">
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-name">Name:</label>
                         <input type="text" name="name" th:field="${newItem.nombre}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <button type="submit"> Guardar </button>
                     </div>
 

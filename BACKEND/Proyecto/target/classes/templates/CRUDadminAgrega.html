@@ -28,51 +28,51 @@
 
                 <form action="#" th:action="@{/jugador/guardar}" th:object="${newItem}" method="post">
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-name">Name:</label>
                         <input type="text" name="name" th:field="${newItem.nombre}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-lastUpdated">Last Updated:</label>
                         <input type="text" name="last_updated" th:field="${newItem.actualizacion}">
                     </div>
 
-                    <div class="edit-field">
+                    <div">
                         <label for="selected-cost">Ataque:</label>
                         <input type="text" name="cost" th:field="${newItem.atack}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-weight">Defensa:</label>
                         <input type="text" name="weight" th:field="${newItem.defence}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-examine">Tamaño:</label>
                         <input type="text" name="examine" th:field="${newItem.tamano}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-wiki_url">Wiki Url:</label>
                         <input type="text" name="wiki_url" th:field="${newItem.wiki}">
                     </div>
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-weight">Vida:</label>
                         <input type="text" name="weight" th:field="${newItem.vida}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-examine">Descripcion:</label>
                         <input type="text" name="examine" th:field="${newItem.desc}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <label for="selected-wiki_url">Categoria:</label>
                         <input type="text" name="wiki_url" th:field="${newItem.cat}">
                     </div>
 
-                    <div class="edit-field">
+                    <div>
                         <button type="submit"> Guardar </button>
                     </div>
 

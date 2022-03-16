@@ -43,16 +43,16 @@
                 <h3>Agrega aqui</h3><br>
                 <form action="#" th:action="@{/habitacion/guardar}" th:object="${newItem}" method="post">
 
-                    <div class="">
+                    <div>
                         <label for="selected-name">ID:</label>
                         <input type="text" name="name" th:field="${newItem.Id}">
                     </div>
-                    <div class="">
+                    <div>
                         <label for="selected-name">Nombre:</label>
                         <input type="text" name="name" th:field="${newItem.nombre}">
                     </div>
 
-                    <div class="">
+                    <div>
                         <button type="submit"> Guardar </button>
                     </div>
                 </form>
