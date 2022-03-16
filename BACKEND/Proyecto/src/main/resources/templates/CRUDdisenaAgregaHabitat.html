@@ -28,12 +28,12 @@
         <h3>Elimina aqui</h3><br>
         <form action="#" th:action="@{/habitacion/eliminar}" th:object="${newItem}" method="post">
 
-            <div class="">
+            <div >
                 <label for="selected-name">ID:</label>
                 <input type="text" name="name" th:field="${newItem.Id}">
             </div>
 
-            <div class="">
+            <div >
                 <button type="submit"> Eliminar </button>
             </div>
         </form>

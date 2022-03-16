@@ -29,6 +29,7 @@ public class JugadorControl {
     @Autowired
     JugadorRepo jugadorRepo;
 
+<<<<<<< HEAD
     @Autowired
     MochilaRepo mochilas;
 
@@ -39,6 +40,8 @@ public class JugadorControl {
         return "CRUDadminModifica";
     }  
 
+=======
+>>>>>>> origin/main
     @GetMapping("/comingsoon")
     public String iniciod(){ 
         return "Jugador";
@@ -86,6 +89,20 @@ public class JugadorControl {
         mochilas.delete(m);
         return "redirect:/jugador/list";
     }
+
+    @GetMapping("/mod")
+    public String modificarJugador(Model model, @ModelAttribute Jugador item){
+        model.addAttribute("newItem", new Jugador());
+        return "CRUDadminModifica";
+    }
+
+    @PostMapping("modificado")
+    public String modificarJugador(@ModelAttribute Jugador item, Model model){
+        
+        return "redirect:/jugador/list";
+    }
+
+   
 
 
 
