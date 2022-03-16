@@ -24,11 +24,11 @@
         <h2>Ahora puedes <span>eliminar</span> un Item</h2>
 
         <div class="contenedor">
-            <form action="#" th:action="@{/item/eliminado}" th:object="${newItem}" method="post">
+            <form action="#" th:action="@{/item/eliminado}" th:object="${Acceso}" method="post">
 
                 <div>
                     <label for="selected-name">ID:</label>
-                    <input type="text" name="name" th:field="${newItem.Id}">
+                    <input type="text" name="name" th:field="${Acceso.Id}">
                 </div>
 
                 <div>

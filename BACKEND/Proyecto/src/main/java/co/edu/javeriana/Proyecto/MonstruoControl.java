@@ -28,7 +28,7 @@ public class MonstruoControl {
 
     @GetMapping("/crearMonstruo") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Monstruo());
+        model.addAttribute("Acceso", new Monstruo());
         return "CRUDdisenaAgregaMonstruo";
     }
 
@@ -40,7 +40,7 @@ public class MonstruoControl {
 
     @GetMapping("/eliminarMonstruo") 
     public String eliminarItem(Model model){
-        model.addAttribute("newItem", new Monstruo());
+        model.addAttribute("Acceso", new Monstruo());
         model.addAttribute("monstruos",repositorio.findAll());
         return "CRUDdisenaEliminaMonstruo";
     }
@@ -51,7 +51,7 @@ public class MonstruoControl {
     }
     @GetMapping("/modificarMonstruo") 
     public String modificarItem(Model model){
-        model.addAttribute("newItem", new Monstruo());
+        model.addAttribute("Acceso", new Monstruo());
         return "CRUDdisenaModificaMonstruo";
     } 
      

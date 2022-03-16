@@ -7,11 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
 public class Monstruo {
-
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
@@ -22,10 +24,11 @@ public class Monstruo {
     private int atack;
     private int defence;
     private int tamano;
-    private String desc;
     private int vida;
-    private String wiki;
     private String cat;
+    private String desc;
+    private String wiki;
+    
     
     public Monstruo(){
 

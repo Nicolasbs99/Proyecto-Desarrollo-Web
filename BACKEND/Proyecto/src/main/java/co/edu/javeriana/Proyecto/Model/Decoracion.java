@@ -7,13 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Decoracion {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
-    String Nombre;
+    String name;
 
     @OneToOne
     Habitacion habit;
@@ -23,9 +26,9 @@ public class Decoracion {
     }
 
 
-    public Decoracion( String nombre) {
+    public Decoracion( String name) {
         
-        Nombre = nombre;
+        this.name = name;
         
     }
 
@@ -40,13 +43,13 @@ public class Decoracion {
     }
 
 
-    public String getNombre() {
-        return Nombre;
+    public String getname() {
+        return name;
     }
 
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setname(String name) {
+        this.name = name;
     }
 
 

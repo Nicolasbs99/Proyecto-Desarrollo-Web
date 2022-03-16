@@ -27,7 +27,7 @@ public class DecoControl {
 
     @GetMapping("/crearDecoracion") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Decoracion());
+        model.addAttribute("Acceso", new Decoracion());
         return "CRUDdisenaAgregaDecor";
     }
 
@@ -41,6 +41,6 @@ public class DecoControl {
         repositorio.delete(item);
         return "redirect:/disenar";
     }
-
+   
     
 }

@@ -52,7 +52,7 @@ public class JugadorControl {
   
     @GetMapping("/crear") 
     public String crearJugadorer(Model model){
-        model.addAttribute("newItem", new Jugador());
+        model.addAttribute("Acceso", new Jugador());
         return "CRUDadminAgrega";
     }
     @PostMapping("guardarm")
@@ -76,7 +76,7 @@ public class JugadorControl {
 
     @GetMapping("/eliminar")
     public String deleteJugador(Model model, @ModelAttribute Jugador item){
-        model.addAttribute("newItem", new Jugador());
+        model.addAttribute("Acceso", new Jugador());
         return "CRUDadminElimina";
     }
 

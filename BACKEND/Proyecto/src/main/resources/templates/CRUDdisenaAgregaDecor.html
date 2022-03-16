@@ -21,11 +21,11 @@
         <h2>Ahora puedes <span>manejar</span> la decoración</h2>
 
         <h3>Elimina aqui</h3><br>
-        <form action="#" th:action="@{/decoracion/eliminar}" th:object="${newItem}" method="post">
+        <form action="#" th:action="@{/decoracion/eliminar}" th:object="${Acceso}" method="post">
 
             <div class="">
                 <label for="selected-name">ID:</label>
-                <input type="text" name="name" th:field="${newItem.Id}">
+                <input type="text" name="name" th:field="${Acceso.Id}">
             </div>
 
             <div class="">
@@ -36,15 +36,15 @@
             <div class="img-box">
 
                 <h3>Agrega aqui</h3><br>
-                <form action="#" th:action="@{/decoracion/guardar}" th:object="${newItem}" method="post">
+                <form action="#" th:action="@{/decoracion/guardar}" th:object="${Acceso}" method="post">
 
                     <div>
                         <label for="selected-name">ID:</label>
-                        <input type="text" name="name" th:field="${newItem.Id}">
+                        <input type="text" name="name" th:field="${Acceso.Id}">
                     </div>
                     <div>
                         <label for="selected-name">Nombre:</label>
-                        <input type="text" name="name" th:field="${newItem.nombre}">
+                        <input type="text" name="name" th:field="${Acceso.name}">
                     </div>
 
                     <div>

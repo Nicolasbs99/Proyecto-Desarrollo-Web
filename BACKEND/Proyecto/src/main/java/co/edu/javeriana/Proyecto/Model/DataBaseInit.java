@@ -1,5 +1,15 @@
 package co.edu.javeriana.Proyecto.Model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -54,10 +64,9 @@ public class DataBaseInit implements ApplicationRunner {
         itemRepos.save(new Item( "Espada", 12, (float)9.6, "descrip", "op"));
         itemRepos.save(new Item( "Escudo", 20, (float)18.2, "descrip", "op"));
         itemRepos.save(new Item( "Botas", 6, (float)3.6, "descrip", "op"));
-        decoRepo.save(new Decoracion("Florero"));
-        decoRepo.save(new Decoracion("Estante"));
-        decoRepo.save(new Decoracion("Perchero"));
-
+        cargarDeco();
+        //loadItems();
+        //loadMonsters();
 
         Calabozo cal = calRepos.findById(1l).orElseThrow();
         for (Habitacion h : habRepos.findAll()) {
@@ -95,4 +104,82 @@ public class DataBaseInit implements ApplicationRunner {
         habs2.setMonstruo(js);
         habRepos.save(habs2);
     }
+    void cargarDeco(){
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+		TypeReference<List<Decoracion>> typeReference = new TypeReference<List<Decoracion>>(){};
+		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/objetos-decorativos.json");
+
+		List<Decoracion> itemList = new ArrayList<>();
+        
+        try {
+            itemList = (mapper.readValue(inputStream,typeReference));
+        } catch (StreamReadException e) {
+            
+            e.printStackTrace();
+        } catch (DatabindException e) {
+            
+            e.printStackTrace();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+
+       
+        decoRepo.saveAll(itemList);
+    }
+    void loadItems() {
+        
+      
+		ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		TypeReference<List<Item>> typeReference = new TypeReference<List<Item>>(){};
+		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/items.json");
+
+		List<Item> itemList = new ArrayList<>();
+        try {
+            itemList = (mapper.readValue(inputStream,typeReference));
+        } catch (StreamReadException e) {
+            
+            e.printStackTrace();
+        } catch (DatabindException e) {
+            
+            e.printStackTrace();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+        
+        itemRepos.saveAll(itemList);
+        
+	}
+
+    void loadMonsters(){
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		TypeReference<List<Monstruo>> typeReference = new TypeReference<List<Monstruo>>(){};
+		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
+		List<Monstruo> monsterList = new ArrayList<>();
+
+        try {
+            monsterList = (mapper.readValue(inputStream,typeReference));     
+        } catch (StreamReadException e) {
+            
+            e.printStackTrace();
+        } catch (DatabindException e) {
+            
+            e.printStackTrace();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+		
+        monsRepo.saveAll(monsterList);
+
+    }
+
 }

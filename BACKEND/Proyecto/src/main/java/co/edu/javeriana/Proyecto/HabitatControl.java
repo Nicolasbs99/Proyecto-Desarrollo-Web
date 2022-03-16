@@ -27,7 +27,7 @@ public class HabitatControl {
 
     @GetMapping("/crearHabitacion") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaAgregaHabitat";
     }
 
@@ -45,27 +45,27 @@ public class HabitatControl {
 
     @GetMapping("/salidaHabitacion") 
     public String eliminarItem(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaSalidasHabitat";
     }
     @GetMapping("/monstruoHabitacion") 
     public String modificarItem(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaMonstruosHabitat";
     }
     @GetMapping("/modificarHabitacion") 
     public String modificarItems(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaAgregaItem";
     }
     @GetMapping("/ItemHabitacion") 
     public String item(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaItemHabitat";
     }
     @GetMapping("/DecoHabitacion") 
     public String decoitem(Model model){
-        model.addAttribute("newItem", new Habitacion());
+        model.addAttribute("Acceso", new Habitacion());
         return "CRUDdisenaDecorHabitat";
     }
 

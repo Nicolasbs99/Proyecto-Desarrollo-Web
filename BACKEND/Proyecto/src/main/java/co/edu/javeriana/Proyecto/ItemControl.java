@@ -25,7 +25,7 @@ public class ItemControl {
 
     @GetMapping("/crearItem") 
     public String crearItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("Acceso", new Item());
         return "CRUDdisenaAgregaItem";
     }
 
@@ -37,7 +37,7 @@ public class ItemControl {
 
     @GetMapping("/eliminarItem") 
     public String eliminarItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("Acceso", new Item());
         return "CRUDdisenaEliminaItem";
     }
 
@@ -49,7 +49,7 @@ public class ItemControl {
     
     @GetMapping("/modificarItem") 
     public String modificarItem(Model model){
-        model.addAttribute("newItem", new Item());
+        model.addAttribute("Acceso", new Item());
         return "CRUDdisenaModificaItem";
     }
     

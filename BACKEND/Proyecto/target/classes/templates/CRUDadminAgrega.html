@@ -26,50 +26,50 @@
         <div class="contenedor">
             <div class="img-box">
 
-                <form action="#" th:action="@{/jugador/guardar}" th:object="${newItem}" method="post">
+                <form action="#" th:action="@{/jugador/guardar}" th:object="${Acceso}" method="post">
 
                     <div>
                         <label for="selected-name">Name:</label>
-                        <input type="text" name="name" th:field="${newItem.nombre}">
+                        <input type="text" name="name" th:field="${Acceso.nombre}">
                     </div>
 
                     <div>
                         <label for="selected-lastUpdated">Last Updated:</label>
-                        <input type="text" name="last_updated" th:field="${newItem.actualizacion}">
+                        <input type="text" name="last_updated" th:field="${Acceso.actualizacion}">
                     </div>
 
                     <div>
                         <label for="selected-cost">Ataque:</label>
-                        <input type="text" name="cost" th:field="${newItem.atack}">
+                        <input type="text" name="cost" th:field="${Acceso.atack}">
                     </div>
 
                     <div>
                         <label for="selected-weight">Defensa:</label>
-                        <input type="text" name="weight" th:field="${newItem.defence}">
+                        <input type="text" name="weight" th:field="${Acceso.defence}">
                     </div>
 
                     <div>
                         <label for="selected-examine">Tamaño:</label>
-                        <input type="text" name="examine" th:field="${newItem.tamano}">
+                        <input type="text" name="examine" th:field="${Acceso.tamano}">
                     </div>
 
                     <div>
                         <label for="selected-wiki_url">Wiki Url:</label>
-                        <input type="text" name="wiki_url" th:field="${newItem.wiki}">
+                        <input type="text" name="wiki_url" th:field="${Acceso.wiki}">
                     </div>
                     <div>
                         <label for="selected-weight">Vida:</label>
-                        <input type="text" name="weight" th:field="${newItem.vida}">
+                        <input type="text" name="weight" th:field="${Acceso.vida}">
                     </div>
 
                     <div>
                         <label for="selected-examine">Descripcion:</label>
-                        <input type="text" name="examine" th:field="${newItem.desc}">
+                        <input type="text" name="examine" th:field="${Acceso.desc}">
                     </div>
 
                     <div>
                         <label for="selected-wiki_url">Categoria:</label>
-                        <input type="text" name="wiki_url" th:field="${newItem.cat}">
+                        <input type="text" name="wiki_url" th:field="${Acceso.cat}">
                     </div>
 
                     <div>
