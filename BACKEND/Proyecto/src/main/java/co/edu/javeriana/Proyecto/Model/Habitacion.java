@@ -47,7 +47,7 @@ public class Habitacion {
     @JoinColumn(name = "monster_id")
     private Monstruo monstruo;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "lugar", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugador> jugador;
 
     @ManyToMany

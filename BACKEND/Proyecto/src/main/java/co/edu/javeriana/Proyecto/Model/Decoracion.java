@@ -21,7 +21,7 @@ public class Decoracion {
     private String name;
     
     @JsonIgnore
-    @ManyToMany(mappedBy = "Decoraciones")
+    @ManyToMany(mappedBy = "decorativeItems")
     private Set<Habitacion> locations;
 
     public Decoracion(){

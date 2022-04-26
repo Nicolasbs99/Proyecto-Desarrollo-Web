@@ -36,7 +36,7 @@ public class Jugador {
     private int hitpoints;
 
     @ElementCollection
-    @CollectionTable(name = "CategoriaJuga")
+    @CollectionTable(name = "PLAYER_CATEGORY")
     private List<String> category;
 
     private String examine;
@@ -47,7 +47,7 @@ public class Jugador {
             CascadeType.MERGE
     })
     @JoinTable(
-            name = "Items",
+            name = "Player_Items",
             joinColumns = {@JoinColumn(name = "player_id")},
             inverseJoinColumns = {@JoinColumn(name ="item_id")}
     )
@@ -55,8 +55,8 @@ public class Jugador {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "HabitacionID")
-    private Habitacion location;
+    @JoinColumn(name = "Room_id")
+    private Habitacion lugar;
 
     Long maxWeight;
     Long weight;
@@ -76,7 +76,7 @@ public class Jugador {
 
     public Jugador(String name, String last_updated, int attack_level, int defence_slash, int size,
             int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
-            Long maxWeight, Long weight , Habitacion location){
+            Long maxWeight, Long weight , Habitacion lugar){
 
         this.name = name;
         this.last_updated = last_updated;
@@ -90,7 +90,7 @@ public class Jugador {
         this.backpack = backpack;
         this.maxWeight = maxWeight;
         this.weight = weight;
-        this.location = location;
+        this.lugar = lugar;
     }
 
     public Long getId() {
@@ -197,12 +197,12 @@ public class Jugador {
         this.weight = weight;
     }
 
-    public Habitacion getLocation() {
-        return location;
+    public Habitacion getlugar() {
+        return lugar;
     }
 
-    public void setLocation(Habitacion location) {
-        this.location = location;
+    public void setlugar(Habitacion lugar) {
+        this.lugar = lugar;
     }
 
     public String getItems() {

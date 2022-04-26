@@ -39,7 +39,7 @@ public class Monstruo {
     private String wiki_url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "Monstruo",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "monstruo",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Habitacion> locations;
 
     @JsonIgnore

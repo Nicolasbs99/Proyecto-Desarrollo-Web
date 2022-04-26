@@ -17,7 +17,7 @@ public class Mochila {
     
     Float peso;
 
-    @OneToMany( mappedBy = "mochila")
+    @OneToMany( mappedBy = "obtainedBy")
     List<Item> Objetos = new ArrayList<>();
 
     public Mochila() {
