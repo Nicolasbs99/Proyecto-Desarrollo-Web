@@ -1,112 +1,171 @@
 package co.edu.javeriana.Proyecto.Model;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
 @Entity
+@Table(name = "Monsters")
 public class Monstruo {
-    @JsonIgnore
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
-
-
-    private String nombre;
-    private Date actualizacion;
-    private int atack;
-    private int defence;
-    private int tamano;
-    private int vida;
-    private String cat;
-    private String desc;
-    private String wiki;
+    @GeneratedValue
+  
+    private Long id;
     
-    
-    public Monstruo(){
+    private String name;
+    private String last_updated;
+    private int attack_level;
+    private int defence_slash;
+    private int size;
+    private int hitpoints;
 
-    };
+    @ElementCollection
+    @CollectionTable(name = "MONSTER_CATEGORY")
+    private List<String> category; 
 
-    public Monstruo( String nombre, int atack, int defence, int tamano, String desc,
-            int vida, String wiki, String cat) {
-        
-        this.nombre = nombre;
-        this.atack = atack;
-        this.defence = defence;
-        this.tamano = tamano;
-        this.desc = desc;
-        this.vida = vida;
-        this.wiki = wiki;
-        this.cat = cat;
+    private String examine;
+    private String wiki_url;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Habitacion> locations;
+
+    @JsonIgnore
+    @Transient
+    String categories;
+
+    public Monstruo (){
+        this.category = new ArrayList<>();
+        this.locations = new ArrayList<>();
+    }    
+
+    public Monstruo( String name, String last_updated, int attack_level, int defence_slash, int size,
+            int hitpoints, ArrayList<String> category, String examine, String wiki_url,ArrayList<Habitacion> locations) {
+            
+        this.name = name;
+        this.last_updated = last_updated;
+        this.attack_level = attack_level;
+        this.defence_slash = defence_slash;
+        this.size = size;
+        this.hitpoints = hitpoints;
+        this.category = category;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
+        this.locations = locations;
     }
-    
 
+    
+    public Monstruo( String name, String last_updated, int attack_level, int defence_slash, int size,
+            int hitpoints, ArrayList<String> category, String examine, String wiki_url) {
+            
+        this.name = name;
+        this.last_updated = last_updated;
+        this.attack_level = attack_level;
+        this.defence_slash = defence_slash;
+        this.size = size;
+        this.hitpoints = hitpoints;
+        this.category = category;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
+        
+    }
 
     public Long getId() {
-        return Id;
+        return id;
     }
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
-    public Date getActualizacion() {
-        return actualizacion;
+    public String getLast_updated() {
+        return last_updated;
     }
-    public void setActualizacion(Date actualizacion) {
-        this.actualizacion = actualizacion;
+    public void setLast_updated(String last_updated) {
+        this.last_updated = last_updated;
     }
-    public int getAtack() {
-        return atack;
+    public int getAttack_level() {
+        return attack_level;
     }
-    public void setAtack(int atack) {
-        this.atack = atack;
+    public void setAttack_level(int attack_level) {
+        this.attack_level = attack_level;
     }
-    public int getDefence() {
-        return defence;
+    public int getDefence_slash() {
+        return defence_slash;
     }
-    public void setDefence(int defence) {
-        this.defence = defence;
+    public void setDefence_slash(int defence_slash) {
+        this.defence_slash = defence_slash;
     }
-    public int getTamano() {
-        return tamano;
+    public int getSize() {
+        return size;
     }
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
+    public void setSize(int size) {
+        this.size = size;
     }
-    public String getDesc() {
-        return desc;
+    public int getHitpoints() {
+        return hitpoints;
     }
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setHitpoints(int hitpoints) {
+        this.hitpoints = hitpoints;
     }
-    public int getVida() {
-        return vida;
+    public List<String> getCategory() {
+        return category;
     }
-    public void setVida(int vida) {
-        this.vida = vida;
+    public void setCategory(List<String> category) {
+        this.category = category;
     }
-    public String getWiki() {
-        return wiki;
+    public String getExamine() {
+        return examine;
     }
-    public void setWiki(String wiki) {
-        this.wiki = wiki;
+    public void setExamine(String examine) {
+        this.examine = examine;
     }
-    public String getCat() {
-        return cat;
+    public String getWiki_url() {
+        return wiki_url;
     }
-    public void setCat(String cat) {
-        this.cat = cat;
+    public void setWiki_url(String wiki_url) {
+        this.wiki_url = wiki_url;
     }
+
+    public List<Habitacion> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Habitacion> locations) {
+        this.locations = locations;
+    }
+
+    public String getCategories() {
+
+        String retorno = "";
+        for(String cate: category){
+
+            retorno = retorno + cate + ",";
+        }
+
+        return retorno;
+    }
+
+    public void setCategorias(String categories) {
+        this.categories = categories;
+    }
+
+
 }
+
