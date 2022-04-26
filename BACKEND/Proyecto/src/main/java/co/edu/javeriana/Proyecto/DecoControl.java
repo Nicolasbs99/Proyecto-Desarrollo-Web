@@ -1,46 +1,52 @@
 package co.edu.javeriana.Proyecto;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.javeriana.Proyecto.Model.Decoracion;
-
 import co.edu.javeriana.Proyecto.Model.DecoracionRepo;
 
-
-
-@Controller
-@RequestMapping("/decoracion")
+@RestController
+@RequestMapping("/decoItem")
 public class DecoControl {
+
+    @Autowired
+    DecoracionRepo ItemDecoracion;
 
     Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    DecoracionRepo repositorio;
-
-    @GetMapping("/crearDecoracion") 
-    public String crearItem(Model model){
-        model.addAttribute("Acceso", new Decoracion());
-        return "CRUDdisenaAgregaDecor";
+    @RequestMapping("/list")
+    @CrossOrigin("http://localhost:4200")
+    List<Decoracion> showDecoItems() {
+        return (List<Decoracion>) ItemDecoracion.findAll();
     }
 
-    @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Decoracion item, Model model){
-        repositorio.save(item);
-        return "redirect:/disenar";
+    @GetMapping("/{id}/get")
+    @CrossOrigin("http://localhost:4200")
+    Decoracion getDecoItem(@PathVariable Long id) {
+        Decoracion selected = ItemDecoracion.findById(id).orElseThrow();
+        return selected;
     }
-    @PostMapping("eliminar")
-    public String eliminarJugador(@ModelAttribute Decoracion item, Model model){
-        repositorio.delete(item);
-        return "redirect:/disenar";
+    
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Decoracion saveData(@RequestBody Decoracion dItem) {
+        return ItemDecoracion.save(dItem);
     }
-   
+
+    @GetMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    void deleteDecoItem(@PathVariable Long id) {
+        ItemDecoracion.deleteById(id);
+    }
     
 }

@@ -1,56 +1,52 @@
 package co.edu.javeriana.Proyecto;
 
-import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.javeriana.Proyecto.Model.Item;
 import co.edu.javeriana.Proyecto.Model.ItemRepo;
 
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/item")
 public class ItemControl {
 
+    @Autowired
+    ItemRepo ItemRepo;
     Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    ItemRepo repositorio;
-
-    @GetMapping("/crearItem") 
-    public String crearItem(Model model){
-        model.addAttribute("Acceso", new Item());
-        return "CRUDdisenaAgregaItem";
+    @GetMapping("/list")
+    @CrossOrigin("http://localhost:4200")
+    List<Item> showItems() {
+        return (List<Item>) ItemRepo.findAll();
     }
 
-    @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Item item, Model model){
-        repositorio.save(item);
-        return "redirect:/disenador";
+    @GetMapping("/{id}/get")
+    @CrossOrigin("http://localhost:4200")
+    Item getItem(@PathVariable Long id) {
+        Item selected = ItemRepo.findById(id).orElseThrow();
+        return selected;
     }
 
-    @GetMapping("/eliminarItem") 
-    public String eliminarItem(Model model){
-        model.addAttribute("Acceso", new Item());
-        return "CRUDdisenaEliminaItem";
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Item saveData(@RequestBody Item item) {
+        return ItemRepo.save(item);
     }
 
-    @PostMapping("eliminado")
-    public String eliminandoItem(@ModelAttribute Item item, Model model){
-        repositorio.delete(item);
-        return "redirect:/disenador";
+    @GetMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    void deleteItem(@PathVariable Long id) {
+        ItemRepo.deleteById(id);  
     }
-    
-    @GetMapping("/modificarItem") 
-    public String modificarItem(Model model){
-        model.addAttribute("Acceso", new Item());
-        return "CRUDdisenaModificaItem";
-    }
-    
+
 }

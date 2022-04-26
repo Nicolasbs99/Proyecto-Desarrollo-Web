@@ -1,58 +1,56 @@
 package co.edu.javeriana.Proyecto;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.javeriana.Proyecto.Model.Monstruo;
-
 import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
 
-
-
-@Controller
+@RestController
 @RequestMapping("/monstruo")
 public class MonstruoControl {
 
+    @Autowired
+    MonstruoRepo MonstruoRepo;
     Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    MonstruoRepo repositorio;
-
-    @GetMapping("/crearMonstruo") 
-    public String crearItem(Model model){
-        model.addAttribute("Acceso", new Monstruo());
-        return "CRUDdisenaAgregaMonstruo";
+    @GetMapping("/list")
+    @CrossOrigin("http://localhost:4200")
+    List<Monstruo> showMonsters() {
+        return (List<Monstruo>) MonstruoRepo.findAll();
     }
 
-    @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Monstruo item, Model model){
-        repositorio.save(item);
-        return "redirect:/disenador";
+    @GetMapping("/{id}/get")
+    @CrossOrigin("http://localhost:4200")
+    Monstruo getMonster(@PathVariable Long id) {
+        Monstruo selected = MonstruoRepo.findById(id).orElseThrow();
+        return selected;
     }
 
-    @GetMapping("/eliminarMonstruo") 
-    public String eliminarItem(Model model){
-        model.addAttribute("Acceso", new Monstruo());
-        model.addAttribute("monstruos",repositorio.findAll());
-        return "CRUDdisenaEliminaMonstruo";
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Monstruo saveData(@RequestBody Monstruo newMonster) {
+        return MonstruoRepo.save(newMonster);
     }
-    @PostMapping("eliminado")
-    public String eliminandoJugador(@ModelAttribute Monstruo item, Model model){
-        repositorio.delete(item);
-        return "redirect:/disenar";
+
+    @GetMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    int deleteMonster(@PathVariable Long id) {
+        
+        log.info("TRIED");
+        MonstruoRepo.deleteById(id);
+
+        return 1;
     }
-    @GetMapping("/modificarMonstruo") 
-    public String modificarItem(Model model){
-        model.addAttribute("Acceso", new Monstruo());
-        return "CRUDdisenaModificaMonstruo";
-    } 
-     
+
 }
+
