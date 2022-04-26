@@ -1,129 +1,242 @@
 package co.edu.javeriana.Proyecto.Model;
 
-import java.util.Date;
-
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
+@Table(name = "Jugador")
 public class Jugador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long Id;
+    @GeneratedValue
+    private Long id;
 
+    private String name;
+    private String last_updated;
+    private int attack_level;
+    private int defence_slash;
+    private int size;
+    private int hitpoints;
 
-    String nombre;
-     Date actualizacion;
-     int atack;
-     int defence;
-     int tamano;
-     String desc;
-     int vida;
-     String wiki;
-     String cat;
-    
-    @OneToOne
-    Habitacion habitacion;
-    
-    @OneToOne
-    Mochila mochila;
+    @ElementCollection
+    @CollectionTable(name = "CategoriaJuga")
+    private List<String> category;
 
-    public Jugador(){
+    private String examine;
+    private String wiki_url;
 
-    };
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "Items",
+            joinColumns = {@JoinColumn(name = "player_id")},
+            inverseJoinColumns = {@JoinColumn(name ="item_id")}
+    )
+    private Set<Item> backpack;
 
-    public Jugador( String nombre, int atack, int defence, int tamano, String desc,
-            int vida, String wiki, String cat) {
-        
-        this.nombre = nombre;
-        this.atack = atack;
-        this.defence = defence;
-        this.tamano = tamano;
-        this.desc = desc;
-        this.vida = vida;
-        this.wiki = wiki;
-        this.cat = cat;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "HabitacionID")
+    private Habitacion location;
+
+    Long maxWeight;
+    Long weight;
+
+    @JsonIgnore
+    @Transient
+    String items;
+
+    @JsonIgnore
+    @Transient
+    String categories;
+
+    public Jugador() {
+        category = new ArrayList<>();
+        backpack = new HashSet<>();
     }
-    
+
+    public Jugador(String name, String last_updated, int attack_level, int defence_slash, int size,
+            int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
+            Long maxWeight, Long weight , Habitacion location){
+
+        this.name = name;
+        this.last_updated = last_updated;
+        this.attack_level = attack_level;
+        this.defence_slash = defence_slash;
+        this.size = size;
+        this.hitpoints = hitpoints;
+        this.category = category;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
+        this.backpack = backpack;
+        this.maxWeight = maxWeight;
+        this.weight = weight;
+        this.location = location;
+    }
+
     public Long getId() {
-        return Id;
+        return id;
     }
+
     public void setId(Long id) {
-        Id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public Date getActualizacion() {
-        return actualizacion;
-    }
-    public void setActualizacion(Date actualizacion) {
-        this.actualizacion = actualizacion;
-    }
-    public Habitacion getHabitacion() {
-        return habitacion;
+        this.id = id;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    public String getName() {
+        return name;
     }
 
-    public Mochila getMochila() {
-        return mochila;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setMochila(Mochila mochila) {
-        this.mochila = mochila;
+    public String getLast_updated() {
+        return last_updated;
     }
 
-    public int getAtack() {
-        return atack;
+    public void setLast_updated(String last_updated) {
+        this.last_updated = last_updated;
     }
-    public void setAtack(int atack) {
-        this.atack = atack;
+
+    public int getAttack_level() {
+        return attack_level;
     }
-    public int getDefence() {
-        return defence;
+
+    public void setAttack_level(int attack_level) {
+        this.attack_level = attack_level;
     }
-    public void setDefence(int defence) {
-        this.defence = defence;
+
+    public int getDefence_slash() {
+        return defence_slash;
     }
-    public int getTamano() {
-        return tamano;
+
+    public void setDefence_slash(int defence_slash) {
+        this.defence_slash = defence_slash;
     }
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
+
+    public int getSize() {
+        return size;
     }
-    public String getDesc() {
-        return desc;
+
+    public void setSize(int size) {
+        this.size = size;
     }
-    public void setDesc(String desc) {
-        this.desc = desc;
+
+    public int getHitpoints() {
+        return hitpoints;
     }
-    public int getVida() {
-        return vida;
+
+    public void setHitpoints(int hitpoints) {
+        this.hitpoints = hitpoints;
     }
-    public void setVida(int vida) {
-        this.vida = vida;
+
+    public List<String> getCategory() {
+        return category;
     }
-    public String getWiki() {
-        return wiki;
+
+    public void setCategory(List<String> category) {
+        this.category = category;
     }
-    public void setWiki(String wiki) {
-        this.wiki = wiki;
+
+    public String getExamine() {
+        return examine;
     }
-    public String getCat() {
-        return cat;
+
+    public void setExamine(String examine) {
+        this.examine = examine;
     }
-    public void setCat(String cat) {
-        this.cat = cat;
+
+    public String getWiki_url() {
+        return wiki_url;
     }
+
+    public void setWiki_url(String wiki_url) {
+        this.wiki_url = wiki_url;
+    }
+
+    public Set<Item> getBackpack() {
+        return backpack;
+    }
+
+    public void setBackpack(Set<Item> backpack) {
+        this.backpack = backpack;
+    }
+
+    public Long getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(Long maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
+    }
+
+    public Habitacion getLocation() {
+        return location;
+    }
+
+    public void setLocation(Habitacion location) {
+        this.location = location;
+    }
+
+    public String getItems() {
+
+        if(backpack.size() != 0){
+
+            String retorno = "";
+            for(Item item: backpack){
+                retorno = retorno + item.getId() + ",";
+            }
+            return retorno;
+        }
+
+        return items;
+    }
+
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public String getCategories() {
+
+        String retorno = "";
+        for(String cate: category){
+
+            retorno = retorno + cate + ",";
+        }
+
+        return retorno;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+
 }

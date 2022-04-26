@@ -30,7 +30,7 @@ public class Item{
     private String wiki_url; 
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "backpack")
+    @ManyToMany(mappedBy = "Mochila")
     private Set<Jugador> obtainedBy;
     
     @JsonIgnore

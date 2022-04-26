@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Monsters")
+@Table(name = "Monstruo")
 public class Monstruo {
     
     @Id
@@ -32,14 +32,14 @@ public class Monstruo {
     private int hitpoints;
 
     @ElementCollection
-    @CollectionTable(name = "MONSTER_CATEGORY")
+    @CollectionTable(name = "CategoriaMonstruo")
     private List<String> category; 
 
     private String examine;
     private String wiki_url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "Monstruo",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Habitacion> locations;
 
     @JsonIgnore
