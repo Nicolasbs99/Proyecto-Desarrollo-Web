@@ -1,135 +1,143 @@
 package co.edu.javeriana.Proyecto.Model;
 
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.Date;
+
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-public class Item {
+@Table(name = "Items")
+public class Item{
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
-    
-    String Nombre;
-    Date Actualizacion;
-    int costo;
-    float pesot;
-    String Descri;
-    String wiki;
-    
-    @OneToOne
-    Mochila mochila;
+    @GeneratedValue
+    private Long id;
 
-    @OneToOne
-    Habitacion habi;
+    private String name;
+    private String last_updated;
+    private int cost;
+    private int weight;
+    private String examine;
+    private String wiki_url; 
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "backpack")
+    private Set<Jugador> obtainedBy;
     
-    public Item() {
+    @JsonIgnore
+    @ManyToMany(mappedBy = "items")
+    private Set<Habitacion> locations;
+
+    public Item(){
+        obtainedBy = new HashSet<>();
+        locations = new HashSet<>();
     }
 
-
-    public Item( String nombre,  int costo, float pesot, String descri, String wiki) {
+    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url,Set<Jugador> obtainedBy,Set<Habitacion> locations) {
         
-        Nombre = nombre;
-        this.costo = costo;
-        this.pesot = pesot;
-        Descri = descri;
-        this.wiki = wiki;
+        this.name = name;
+        this.last_updated = last_updated;
+        this.cost = cost;
+        this.weight = weight;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
+        this.obtainedBy = obtainedBy;
+        this.locations = locations;
     }
 
-
-    public Habitacion getHabi() {
-        return habi;
+    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
+        
+        this.name = name;
+        this.last_updated = last_updated;
+        this.cost = cost;
+        this.weight = weight;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
     }
-
-
-    public void setHabi(Habitacion habi) {
-        this.habi = habi;
-    }
-
-
-    public Mochila getMochila() {
-        return mochila;
-    }
-
-
-    public void setMochila(Mochila mochila) {
-        this.mochila = mochila;
-    }
-
 
     public Long getId() {
-        return Id;
+        return id;
     }
-
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
-
-    public String getNombre() {
-        return Nombre;
+    public String getName() {
+        return name;
     }
 
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    public Date getActualizacion() {
-        return Actualizacion;
+    public String getLast_updated() {
+        return last_updated;
     }
 
-
-    public void setActualizacion(Date actualizacion) {
-        Actualizacion = actualizacion;
+    public void setLast_updated(String last_updated) {
+        this.last_updated = last_updated;
     }
 
-
-    public int getCosto() {
-        return costo;
+    public int getCost() {
+        return cost;
     }
 
-
-    public void setCosto(int costo) {
-        this.costo = costo;
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
-
-    public float getPesot() {
-        return pesot;
+    public int getWeight() {
+        return weight;
     }
 
-
-    public void setPesot(float pesot) {
-        this.pesot = pesot;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
-
-    public String getDescri() {
-        return Descri;
+    public String getExamine() {
+        return examine;
     }
 
-
-    public void setDescri(String descri) {
-        Descri = descri;
+    public void setExamine(String examine) {
+        this.examine = examine;
     }
 
-
-    public String getWiki() {
-        return wiki;
+    public String getWiki_url() {
+        return wiki_url;
     }
 
-
-    public void setWiki(String wiki) {
-        this.wiki = wiki;
+    public void setWiki_url(String wiki_url) {
+        this.wiki_url = wiki_url;
     }
-    
+
+    public Set<Jugador> getObtainedBy() {
+        return obtainedBy;
+    }
+
+    public void setObtainedBy(Set<Jugador> obtainedBy) {
+        this.obtainedBy = obtainedBy;
+    }
+
+    public Set<Habitacion> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Set<Habitacion> locations) {
+        this.locations = locations;
+    };
+
+        
+
 }
+
+
