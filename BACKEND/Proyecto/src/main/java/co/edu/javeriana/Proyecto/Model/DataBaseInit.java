@@ -30,13 +30,11 @@ public class DataBaseInit implements ApplicationRunner{
     /// se ejecuta una sola vez al inicio de la aplicacion.
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        
         loadDecoItems();
         loadItems();
         loadMonsters();
-        
-        loadRooms();
         loadPlayers();
+        //loadRooms();       
         
     }
     
@@ -51,9 +49,6 @@ public class DataBaseInit implements ApplicationRunner{
         itemList.add(new Decoracion("Large door"));
         itemList.add(new Decoracion("Crate"));
         itemList.add(new Decoracion("Giant crystal"));
-        itemList.add(new Decoracion("Vine"));
-        itemList.add(new Decoracion("Door"));
-        itemList.add(new Decoracion("Stairs"));
 
         decoItemRepo.saveAll(itemList);
     }
@@ -81,17 +76,11 @@ public class DataBaseInit implements ApplicationRunner{
         catego.add("Cat A");
         catego.add("Cat B");
         catego.add("Cat C");
-        monsterList.add(new Monstruo("Aberrant spectre","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Nechryael","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo( "Death spawn","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo( "An evil death spawn.","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Summoned Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Ghost","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("The living dead","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Rock Crab","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo("Molanisk","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monstruo( "Skeleton Mage","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Molanisk","2021-09-02",40,45,2,52,catego,"A strange mole-like being.","https://oldschool.runescape.wiki/w/Molanisk"));
+        monsterList.add(new Monstruo("Nechryael","2021-09-02",1,20,2,90,catego,"A monster","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo( "Death spawn","2021-09-02",1,20,2,90,catego,"A monster.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo( "An evil death spawn.","2021-09-02",1,20,2,90,catego,"A monster","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Zombie","2021-09-02",1,20,2,90,catego,"A monster.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
         
         monsterRepo.saveAll(monsterList);
 
@@ -100,20 +89,20 @@ public class DataBaseInit implements ApplicationRunner{
     void loadPlayers(){
 
         Jugador pA = new Jugador();
-        pA.setName("Alice");
-        pA.setAttack_level(30);
+        pA.setName("Sergio");
+        pA.setAttack_level(45);
         pA.setSize(30);
         
         Jugador pB = new Jugador();
-        pB.setName("Bob");
-        pB.setAttack_level(20);
+        pB.setName("Nicolas");
+        pB.setAttack_level(31);
         pB.setSize(20);
 
-        pA.getCategory().add("Categoria Uno");
-        pA.getCategory().add("Categoria Dos");
+        pA.getCategory().add("Santafereno");
+        pA.getCategory().add("DeSantafe");
 
-        pB.getCategory().add("Categoria Uno");
-        pB.getCategory().add("Categoria Dos");
+        pB.getCategory().add("DeMillitos");
+        pB.getCategory().add("ELGlorioso");
 
         Item iA = itemRepo.findById(12l).orElseThrow();
         Item iB = itemRepo.findById(14l).orElseThrow();
@@ -139,7 +128,7 @@ public class DataBaseInit implements ApplicationRunner{
 
         Habitacion rA = new Habitacion();
         
-        rA.setName("ROOM_1");
+        rA.setName("Cuarto de las hadas");
 
         roomRepo.save(rA);
         Item iA = itemRepo.findById(45l).orElseThrow();
@@ -152,7 +141,8 @@ public class DataBaseInit implements ApplicationRunner{
         rA.setMonster(mA);
         roomRepo.save(rA);
         Habitacion rB = new Habitacion();
-        rB.setName("ROOM_2");
+        
+        rB.setName("Habitación de los muertos");
         roomRepo.save(rB);
         Item iB = itemRepo.findById(46l).orElseThrow();
         Decoracion diC = decoItemRepo.findById(7l).orElseThrow();
