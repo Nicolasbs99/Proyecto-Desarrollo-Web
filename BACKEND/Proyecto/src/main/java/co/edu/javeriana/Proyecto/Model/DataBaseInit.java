@@ -1,184 +1,169 @@
 package co.edu.javeriana.Proyecto.Model;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Component
-public class DataBaseInit implements ApplicationRunner {
+public class DataBaseInit implements ApplicationRunner{
 
     @Autowired
-    MonstruoRepo monsRepo;
+    DecoracionRepo decoItemRepo;
 
     @Autowired
-    HabRepo habRepos;
+    ItemRepo itemRepo;
 
     @Autowired
-    CalaRepo calRepos;
+    MonstruoRepo monsterRepo;
 
     @Autowired
-    JugadorRepo jugadoRepo;
+    JugadorRepo playerRepo;
 
     @Autowired
-    MochilaRepo Mochilas;
+    HabRepo roomRepo;
 
-    @Autowired
-    ItemRepo itemRepos;
-
-    @Autowired
-    DecoracionRepo decoRepo;
-
-    
-
+    /// se ejecuta una sola vez al inicio de la aplicacion.
     @Override
-    @Transactional
     public void run(ApplicationArguments args) throws Exception {
         
-        monsRepo.save(new Monstruo("Monstruo 1", 10, 15, 1, "desc", 100, "wiki", "cat"));
-        monsRepo.save(new Monstruo("Monstruo 2", 14, 19, 3, "desc", 150, "wiki", "cat"));
-        monsRepo.save(new Monstruo("Monstruo 3", 5, 25, 2, "desc", 90, "wiki", "cat"));
-        habRepos.save(new Habitacion("Habitacion 1"));
-        habRepos.save(new Habitacion("Habitacion 2"));
-        habRepos.save(new Habitacion("Habitacion 3"));
-        calRepos.save(new Calabozo("Calabozo 1"));
-        calRepos.save(new Calabozo("Calabozo 2"));
-        calRepos.save(new Calabozo("Calabozo 3"));
-        Mochilas.save(new Mochila((float) 93.5));
-        Mochilas.save(new Mochila((float) 67.03));
-        Mochilas.save(new Mochila((float) 54.5));
-        jugadoRepo.save(new Jugador("Nicolas", 10, 15, 1, "desc", 100, "wiki", "cat"));
-        jugadoRepo.save(new Jugador("Sergio", 14, 19, 3, "desc", 150, "wiki", "cat"));
-        jugadoRepo.save(new Jugador("Santiago", 5, 25, 2, "desc", 90, "wiki", "cat"));
-        itemRepos.save(new Item( "Espada", 12, (float)9.6, "descrip", "op"));
-        itemRepos.save(new Item( "Escudo", 20, (float)18.2, "descrip", "op"));
-        itemRepos.save(new Item( "Botas", 6, (float)3.6, "descrip", "op"));
-        cargarDeco();
-        //loadItems();
-        //loadMonsters();
-
-        Calabozo cal = calRepos.findById(1l).orElseThrow();
-        for (Habitacion h : habRepos.findAll()) {
-            h.setCalabozo(cal);
-            habRepos.save(h);
-        }
-
-        Habitacion hab = habRepos.findById(1l).orElseThrow();
-        for (Jugador j : jugadoRepo.findAll()) {
-            j.setHabitacion(hab);
-            jugadoRepo.save(j);
-        }
-        Habitacion habi = habRepos.findById(1l).orElseThrow();
-        for (Decoracion d : decoRepo.findAll()) {
-            d.setHabi(habi);
-            decoRepo.save(d);
-        }
-        Mochila mj = Mochilas.findById(2l).orElseThrow();
-        for (Item j : itemRepos.findAll()) {
-            j.setMochila(mj);
-            itemRepos.save(j);
-        }
-        for (long i = 1; i < 4; i++) {
-            Mochila m = Mochilas.findById(i).orElseThrow();
-            Jugador j = jugadoRepo.findById(i).orElseThrow();
-            j.setMochila(m);
-            jugadoRepo.save(j);
-        }
-        Habitacion habs = habRepos.findById(1l).orElseThrow();
-        Monstruo j = monsRepo.findById(2l).orElseThrow();
-        habs.setMonstruo(j);
-        habRepos.save(habs);
-        Habitacion habs2 = habRepos.findById(3l).orElseThrow();
-        Monstruo js = monsRepo.findById(1l).orElseThrow();
-        habs2.setMonstruo(js);
-        habRepos.save(habs2);
-    }
-    void cargarDeco(){
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-		TypeReference<List<Decoracion>> typeReference = new TypeReference<List<Decoracion>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/objetos-decorativos.json");
-
-		List<Decoracion> itemList = new ArrayList<>();
+        loadDecoItems();
+        loadItems();
+        loadMonsters();
         
-        try {
-            itemList = (mapper.readValue(inputStream,typeReference));
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-
-       
-        decoRepo.saveAll(itemList);
+        loadRooms();
+        loadPlayers();
+        
     }
+    
+    void loadDecoItems(){
+
+        List<Decoracion> itemList = new ArrayList<>();
+
+        itemList.add(new Decoracion("Crate"));
+        itemList.add(new Decoracion("Cave Entrance"));
+        itemList.add(new Decoracion("Prison Door"));
+        itemList.add(new Decoracion("Door"));
+        itemList.add(new Decoracion("Large door"));
+        itemList.add(new Decoracion("Crate"));
+        itemList.add(new Decoracion("Giant crystal"));
+        itemList.add(new Decoracion("Vine"));
+        itemList.add(new Decoracion("Door"));
+        itemList.add(new Decoracion("Stairs"));
+
+        decoItemRepo.saveAll(itemList);
+    }
+
     void loadItems() {
         
-      
-		ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<Item>> typeReference = new TypeReference<List<Item>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/items.json");
-
 		List<Item> itemList = new ArrayList<>();
-        try {
-            itemList = (mapper.readValue(inputStream,typeReference));
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
+
+        itemList.add(new Item("Dwarf remains","2022-09-24",2,3,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item("Toolkit","2021-09-4",2,33,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item("Cannonball","2021-2-24",23,31,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item("Nulodion's notes","2021-09-24",4,32,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item("Ammo mould","2021-09-2",6,35,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item("Instruction manual","2021-09-24",2,32,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
+        itemList.add(new Item( "Cannon barrels","2020-09-24",2,3,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
         
-        itemRepos.saveAll(itemList);
+        itemRepo.saveAll(itemList);
         
 	}
 
     void loadMonsters(){
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<Monstruo>> typeReference = new TypeReference<List<Monstruo>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
+  
 		List<Monstruo> monsterList = new ArrayList<>();
+        ArrayList<String> catego = new ArrayList<>();
+        catego.add("Cat A");
+        catego.add("Cat B");
+        catego.add("Cat C");
+        monsterList.add(new Monstruo("Aberrant spectre","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Nechryael","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo( "Death spawn","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo( "An evil death spawn.","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Summoned Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Ghost","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("The living dead","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Rock Crab","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo("Molanisk","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        monsterList.add(new Monstruo( "Skeleton Mage","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
+        
+        monsterRepo.saveAll(monsterList);
 
-        try {
-            monsterList = (mapper.readValue(inputStream,typeReference));     
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-		
-        monsRepo.saveAll(monsterList);
+    }
+
+    void loadPlayers(){
+
+        Jugador pA = new Jugador();
+        pA.setName("Alice");
+        pA.setAttack_level(30);
+        pA.setSize(30);
+        
+        Jugador pB = new Jugador();
+        pB.setName("Bob");
+        pB.setAttack_level(20);
+        pB.setSize(20);
+
+        pA.getCategory().add("Categoria Uno");
+        pA.getCategory().add("Categoria Dos");
+
+        pB.getCategory().add("Categoria Uno");
+        pB.getCategory().add("Categoria Dos");
+
+        Item iA = itemRepo.findById(12l).orElseThrow();
+        Item iB = itemRepo.findById(14l).orElseThrow();
+        
+        playerRepo.save(pA);
+        playerRepo.save(pB);
+
+        pA.getBackpack().add(iA);
+        pA.getBackpack().add(iB);
+
+        pB.getBackpack().add(iA);
+        pB.getBackpack().add(iB);
+
+        //pA.setLocation(roomRepo.findById(137l).orElseThrow());
+        //pB.setLocation(roomRepo.findById(137l).orElseThrow());
+
+        playerRepo.save(pA);
+        playerRepo.save(pB);
+        
+    }
+
+    void loadRooms(){
+
+        Habitacion rA = new Habitacion();
+        
+        rA.setName("ROOM_1");
+
+        roomRepo.save(rA);
+        Item iA = itemRepo.findById(45l).orElseThrow();
+        Decoracion diA = decoItemRepo.findById(2l).orElseThrow();
+        Decoracion diB = decoItemRepo.findById(3l).orElseThrow();
+        Monstruo mA = monsterRepo.findById(130l).orElseThrow();
+        rA.getItems().add(iA);
+        rA.getDecorativeItems().add(diA);
+        rA.getDecorativeItems().add(diB);
+        rA.setMonster(mA);
+        roomRepo.save(rA);
+        Habitacion rB = new Habitacion();
+        rB.setName("ROOM_2");
+        roomRepo.save(rB);
+        Item iB = itemRepo.findById(46l).orElseThrow();
+        Decoracion diC = decoItemRepo.findById(7l).orElseThrow();
+        Decoracion diD = decoItemRepo.findById(5l).orElseThrow();
+        Monstruo mB = monsterRepo.findById(131l).orElseThrow();
+        rB.getItems().add(iB);
+        rB.getDecorativeItems().add(diC);
+        rB.getDecorativeItems().add(diD);
+        rB.setMonster(mB);
+        rB.getExits().add(rA);
+        roomRepo.save(rB);
 
     }
 

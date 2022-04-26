@@ -1,18 +1,25 @@
 package co.edu.javeriana.Proyecto;
 
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import co.edu.javeriana.Proyecto.Model.Habitacion;
-
+import co.edu.javeriana.Proyecto.Model.ItemRepo;
+import co.edu.javeriana.Proyecto.Model.JugadorRepo;
+import co.edu.javeriana.Proyecto.Model.MonstruoRepo;
+import co.edu.javeriana.Proyecto.Model.DecoracionRepo;
 import co.edu.javeriana.Proyecto.Model.HabRepo;
 
 
@@ -20,54 +27,47 @@ import co.edu.javeriana.Proyecto.Model.HabRepo;
 @RequestMapping("/habitacion")
 public class HabitatControl {
 
-    Logger log = LoggerFactory.getLogger(getClass());
+    @Autowired
+    ItemRepo itemRepository;
 
     @Autowired
-    HabRepo repositorio;
+    DecoracionRepo decorativeItemRepository;
 
-    @GetMapping("/crearHabitacion") 
-    public String crearItem(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaAgregaHabitat";
-    }
+    @Autowired
+    MonstruoRepo monsterRepository;
 
-    @PostMapping("guardar")
-    public String guardarJugador(@ModelAttribute Habitacion item, Model model){
-        repositorio.save(item);
-        return "redirect:/disenador";
-    }
+    @Autowired
+    JugadorRepo playerRepository;
 
-    @PostMapping("eliminar")
-    public String eliminarJugador(@ModelAttribute Habitacion item, Model model){
-        repositorio.delete(item);
-        return "redirect:/disenador";
-    }
+    @Autowired
+    HabRepo roomRepository;
 
-    @GetMapping("/salidaHabitacion") 
-    public String eliminarItem(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaSalidasHabitat";
-    }
-    @GetMapping("/monstruoHabitacion") 
-    public String modificarItem(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaMonstruosHabitat";
-    }
-    @GetMapping("/modificarHabitacion") 
-    public String modificarItems(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaAgregaItem";
-    }
-    @GetMapping("/ItemHabitacion") 
-    public String item(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaItemHabitat";
-    }
-    @GetMapping("/DecoHabitacion") 
-    public String decoitem(Model model){
-        model.addAttribute("Acceso", new Habitacion());
-        return "CRUDdisenaDecorHabitat";
+    Logger log = LoggerFactory.getLogger(getClass());
+
+    @GetMapping("/list")
+    @CrossOrigin("http://localhost:4200")
+    List<Habitacion> listRooms() {
+        return (List<Habitacion>) roomRepository.findAll();
     }
 
+    @GetMapping("/{id}/get")
+    @CrossOrigin("http://localhost:4200")
+    Habitacion getRoom(@PathVariable Long id) {
+        Habitacion selected = roomRepository.findById(id).orElseThrow();
+        return selected;
+    }
+
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Habitacion saveData(@ModelAttribute Habitacion room) {
+        return roomRepository.save(room);
+    }
+
+    @PostMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    void deleteRoom(@PathVariable Long id) {
+        roomRepository.deleteById(id);
+    }
     
 }
+
