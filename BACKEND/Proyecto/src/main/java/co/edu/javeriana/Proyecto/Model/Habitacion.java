@@ -47,7 +47,7 @@ public class Habitacion {
     @JoinColumn(name = "monster_id")
     private Monstruo monstruo;
 
-    @OneToMany(mappedBy = "lugar", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugador> jugador;
 
     @ManyToMany
@@ -95,6 +95,19 @@ public class Habitacion {
         this.monstruo = monster;
         this.jugador = players;
         this.exits = exits;
+    }
+    public Habitacion(Long id, String name) {
+        this.decorativeItems = new HashSet<>();
+        this.items = new HashSet<>();
+        this.jugador = new ArrayList<>();
+        this.exits = new HashSet<>();
+    }
+    public Habitacion(String name) {
+        this.name = name;
+        this.decorativeItems = new HashSet<>();
+        this.items = new HashSet<>();
+        this.jugador = new ArrayList<>();
+        this.exits = new HashSet<>();
     }
 
     public Long getId() {

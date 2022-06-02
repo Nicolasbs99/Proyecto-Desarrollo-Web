@@ -2,16 +2,19 @@ package co.edu.javeriana.Proyecto;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -47,26 +50,59 @@ public class HabitatControl {
     @GetMapping("/list")
     @CrossOrigin("http://localhost:4200")
     List<Habitacion> listRooms() {
-        return (List<Habitacion>) roomRepository.findAll();
+       
+        List<Habitacion> found = (List<Habitacion>) roomRepository.findAll();
+        for (Habitacion r : found) {
+            resolveRedundancy(r);
+        }
+        return found;
     }
 
     @GetMapping("/{id}/get")
     @CrossOrigin("http://localhost:4200")
     Habitacion getRoom(@PathVariable Long id) {
         Habitacion selected = roomRepository.findById(id).orElseThrow();
+        resolveRedundancy(selected);
         return selected;
     }
 
-    @PostMapping("/save")
-    @CrossOrigin("http://localhost:4200")
-    Habitacion saveData(@ModelAttribute Habitacion room) {
-        return roomRepository.save(room);
-    }
 
     @PostMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteRoom(@PathVariable Long id) {
+    String deleteRoom(@PathVariable Long id) {
         roomRepository.deleteById(id);
+        return "room deleted";
+    }
+    
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Habitacion saveData(@RequestBody Habitacion room) {
+
+        if (room.getMonster() != null) {
+
+            if (room.getMonster().getName().isEmpty()) {
+                room.setMonster(null);
+            }
+        }
+
+        Habitacion saved = roomRepository.save(room);
+        resolveRedundancy(saved);
+
+        return saved;
+    }
+
+    public void resolveRedundancy(Habitacion selected) {
+
+        Set<Habitacion> exits = new HashSet<Habitacion>();
+        for (Habitacion r : selected.getExits()) {
+
+            Habitacion aux = new Habitacion();
+            aux.setName(r.getName());
+            aux.setId(r.getId());
+            exits.add(aux);
+        }
+
+        selected.setExits(exits);
     }
     
 }

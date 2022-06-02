@@ -45,8 +45,9 @@ public class DecoControl {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteDecoItem(@PathVariable Long id) {
+    String deleteDecoItem(@PathVariable Long id) {
         ItemDecoracion.deleteById(id);
+        return "item deleted";
     }
     
 }

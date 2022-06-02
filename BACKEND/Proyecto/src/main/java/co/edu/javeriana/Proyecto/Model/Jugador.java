@@ -19,7 +19,6 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 @Table(name = "Jugador")
 public class Jugador {
@@ -46,17 +45,13 @@ public class Jugador {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(
-            name = "Player_Items",
-            joinColumns = {@JoinColumn(name = "player_id")},
-            inverseJoinColumns = {@JoinColumn(name ="item_id")}
-    )
+    @JoinTable(name = "Player_Items", joinColumns = { @JoinColumn(name = "player_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "item_id") })
     private Set<Item> backpack;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "Room_id")
-    private Habitacion lugar;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "Room_id", nullable = true)
+    private Habitacion location;
 
     Long maxWeight;
     Long weight;
@@ -69,29 +64,36 @@ public class Jugador {
     @Transient
     String categories;
 
-    public Jugador() {
-        category = new ArrayList<>();
-        backpack = new HashSet<>();
-    }
+public Jugador() {
+    
+    category = new ArrayList<>();
+    backpack = new HashSet<>();
+}
 
-    public Jugador(String name, String last_updated, int attack_level, int defence_slash, int size,
-            int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
-            Long maxWeight, Long weight , Habitacion lugar){
+public Jugador(String name) {
+    this.name = name;
+    category = new ArrayList<>();
+    backpack = new HashSet<>();
+}
 
-        this.name = name;
-        this.last_updated = last_updated;
-        this.attack_level = attack_level;
-        this.defence_slash = defence_slash;
-        this.size = size;
-        this.hitpoints = hitpoints;
-        this.category = category;
-        this.examine = examine;
-        this.wiki_url = wiki_url;
-        this.backpack = backpack;
-        this.maxWeight = maxWeight;
-        this.weight = weight;
-        this.lugar = lugar;
-    }
+public Jugador(String name, String last_updated, int attack_level, int defence_slash, int size,
+        int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
+        Long maxWeight, Long weight , Habitacion location){
+
+    this.name = name;
+    this.last_updated = last_updated;
+    this.attack_level = attack_level;
+    this.defence_slash = defence_slash;
+    this.size = size;
+    this.hitpoints = hitpoints;
+    this.category = category;
+    this.examine = examine;
+    this.wiki_url = wiki_url;
+    this.backpack = backpack;
+    this.maxWeight = maxWeight;
+    this.weight = weight;
+    this.location = location;
+}
 
     public Long getId() {
         return id;
@@ -197,20 +199,20 @@ public class Jugador {
         this.weight = weight;
     }
 
-    public Habitacion getlugar() {
-        return lugar;
+    public Habitacion getLocation() {
+        return location;
     }
 
-    public void setlugar(Habitacion lugar) {
-        this.lugar = lugar;
+    public void setLocation(Habitacion location) {
+        this.location = location;
     }
 
     public String getItems() {
 
-        if(backpack.size() != 0){
+        if (backpack.size() != 0) {
 
             String retorno = "";
-            for(Item item: backpack){
+            for (Item item : backpack) {
                 retorno = retorno + item.getId() + ",";
             }
             return retorno;
@@ -226,7 +228,7 @@ public class Jugador {
     public String getCategories() {
 
         String retorno = "";
-        for(String cate: category){
+        for (String cate : category) {
 
             retorno = retorno + cate + ",";
         }
@@ -237,6 +239,5 @@ public class Jugador {
     public void setCategories(String categories) {
         this.categories = categories;
     }
-
 
 }
