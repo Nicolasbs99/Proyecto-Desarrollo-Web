@@ -20,7 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("Testeo")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestJugador {
+public class IntegrationPlayerTests {
     @LocalServerPort
     private int port;
 

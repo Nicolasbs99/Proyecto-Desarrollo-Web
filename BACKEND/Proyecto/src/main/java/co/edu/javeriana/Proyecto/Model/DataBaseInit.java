@@ -44,7 +44,7 @@ public class DataBaseInit implements ApplicationRunner{
         loadItems();
         loadMonsters();
         loadPlayers();
-        //loadRooms();       
+        loadRooms();       
         
     }
     
@@ -65,6 +65,7 @@ public class DataBaseInit implements ApplicationRunner{
     
 
         decoItemRepo.saveAll(itemList);
+        
     }
 
     void loadItems() {

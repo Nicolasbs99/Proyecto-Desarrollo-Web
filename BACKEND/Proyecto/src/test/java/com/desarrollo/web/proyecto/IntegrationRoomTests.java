@@ -21,7 +21,7 @@ import co.edu.javeriana.Proyecto.Model.Habitacion;
 @ActiveProfiles("Testeo")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestHabit {
+public class IntegrationRoomTests {
     @LocalServerPort
     private int port;
 

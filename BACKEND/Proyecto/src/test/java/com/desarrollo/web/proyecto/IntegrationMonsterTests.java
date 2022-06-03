@@ -28,7 +28,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 @ActiveProfiles("Testeo")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestMonstruo {
+public class IntegrationMonsterTests {
 
     @LocalServerPort
     private int port;

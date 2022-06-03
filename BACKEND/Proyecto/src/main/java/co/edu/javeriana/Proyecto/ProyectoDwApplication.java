@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProyectoDwApplication {
 	Logger log = LoggerFactory.getLogger(getClass());   
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoDwApplication.class, args);
 	}
